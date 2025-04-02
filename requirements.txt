@@ -14,3 +14,6 @@ scikit-learn==1.6.1
 tensorflow==2.19.0
 keras==3.9.1
 transformers==4.50.3
+
+# Kaggle data download
+kaggle==1.7.4.2
