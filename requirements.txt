@@ -7,12 +7,10 @@ pandas==2.2.3
 
 # Data science and visualization
 matplotlib==3.9.4
+seaborn==0.13.2
 
 # Machine learning libraries
 scikit-learn==1.6.1
 tensorflow==2.19.0
 keras==3.9.1
-
-# Other
-seaborn==0.13.2
 transformers==4.50.3
