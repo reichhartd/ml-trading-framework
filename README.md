@@ -13,3 +13,7 @@ source venv/bin/activate
 ```zsh
 pip install -r requirements.txt
 ```
+
+```zsh
+pip freeze > requirements.txt
+```
