@@ -1,11 +1,13 @@
 """
 Module for loading and processing cryptocurrency data.
 """
+
 import os
 import pandas as pd
 from src.config import DATA_RAW_DIR, DATA_PROCESSED_DIR
 
-def load_crypto_data(symbol, timeframe='1d', start_date=None, end_date=None):
+
+def load_crypto_data(symbol, timeframe="1d", start_date=None, end_date=None):
     """
     Loads cryptocurrency data from local files or APIs.
 
@@ -21,6 +23,7 @@ def load_crypto_data(symbol, timeframe='1d', start_date=None, end_date=None):
     # Implementation follows later
     # Placeholder for the development
     return pd.DataFrame()
+
 
 def preprocess_data(df):
     """
