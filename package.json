@@ -15,10 +15,10 @@
         "*": "prettier  --ignore-unknown --write"
     },
     "devDependencies": {
-        "@prettier/plugin-xml": "^3.4.1",
+        "@prettier/plugin-xml": "3.4.1",
         "husky": "^9.1.7",
-        "prettier": "^3.5.3",
-        "prettier-plugin-toml": "^2.0.3"
+        "prettier": "3.5.3",
+        "prettier-plugin-toml": "2.0.3"
     },
     "repository": {
         "type": "git",
