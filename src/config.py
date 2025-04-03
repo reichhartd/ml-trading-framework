@@ -3,6 +3,7 @@ Configuration file for the ML trading framework.
 """
 
 # Data paths
+DATA_ZIP_DIR = "data/zip"
 DATA_RAW_DIR = "data/raw"
 DATA_PROCESSED_DIR = "data/processed"
 
