@@ -54,7 +54,7 @@ class Dataset:
 
     def get_original_data(self) -> pd.DataFrame:
         """
-        Loads the original pokemon.csv as pandas self.
+        Loads the original data.csv as pandas self.
         If the dataset is not yet loaded, it will be loaded automatically.
         """
 
