@@ -5,10 +5,7 @@ import pandas as pd
 from kaggle.api.kaggle_api_extended import KaggleApi
 from zipfile import ZipFile
 
-from kaggle.models.kaggle_models_extended import Dataset
 
-dataset = Dataset()
-dataset.download()
 
 class Dataset:
     """
@@ -66,3 +63,5 @@ class Dataset:
 
         return pd.read_csv(self.DATASET_DIR_PATH + "data.csv")
 
+dataset = Dataset()
+dataset.download()
