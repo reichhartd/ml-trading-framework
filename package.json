@@ -8,10 +8,12 @@
         "test": "tests"
     },
     "scripts": {
+        "black": "poetry run black .",
         "prettier": "prettier --write . --ignore-path=.gitignore",
         "prepare": "husky"
     },
     "lint-staged": {
+        "*.(py|pyi|ipynb)": "poetry run black",
         "*": "prettier  --ignore-unknown --write"
     },
     "devDependencies": {

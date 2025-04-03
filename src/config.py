@@ -12,4 +12,4 @@ TEST_SIZE = 0.2
 VALIDATION_SIZE = 0.2
 
 # Feature Engineering
-WINDOW_SIZES = [5, 10, 20] # For moving averages
+WINDOW_SIZES = [5, 10, 20]  # For moving averages

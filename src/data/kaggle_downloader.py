@@ -31,7 +31,9 @@ class Dataset:
 
         api = KaggleApi()
         api.authenticate()
-        api.dataset_download_files("mczielinski/bitcoin-historical-data", path=self.ZIP_PATH)
+        api.dataset_download_files(
+            "mczielinski/bitcoin-historical-data", path=self.ZIP_PATH
+        )
 
         zip_file = ZipFile(self.ZIP_PATH + self.ZIP_NAME)
         zip_file = zip_file.extractall(path=self.DATASET_DIR_PATH)
@@ -61,6 +63,7 @@ class Dataset:
             self.download()
 
         return pd.read_csv(self.DATASET_DIR_PATH + "data.csv")
+
 
 dataset = Dataset()
 dataset.download()
