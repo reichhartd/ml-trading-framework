@@ -1,0 +1,8 @@
+plugins:
+    - '@prettier/plugin-xml'
+    - prettier-plugin-toml
+printWidth: 120
+tabWidth: 4
+singleQuote: true
+htmlWhitespaceSensitivity: 'ignore'
+xmlWhitespaceSensitivity: 'ignore'
