@@ -42,7 +42,7 @@ class Dataset:
     def is_downloaded(self) -> bool:
         """checks if the data already has been downloaded"""
 
-        return os.path.exists(self.DATASET_DIR_PATH + "data.csv")
+        return os.path.exists(self.DATASET_DIR_PATH + "btcusd_1-min_data.csv")
 
     def remove_all(self) -> None:
         """removes all files associated with this dataset from the computer"""
