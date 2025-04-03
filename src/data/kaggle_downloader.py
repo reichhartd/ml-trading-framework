@@ -6,7 +6,6 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 from zipfile import ZipFile
 
 
-
 class Dataset:
     """
     This class is a convenience wrapper for dataset functions. It taks care of interaction with the file system and downloading the dataset.
