@@ -175,3 +175,7 @@ cython_debug/
 
 # Notebooks
 notebooks/experiments.ipynb
+
+# Data
+data/zip/bitcoin-historical-data.zip
+data/raw/btcusd_1-min_data.csv
