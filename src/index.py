@@ -1,3 +1,3 @@
-from src.data.dataset import download_dataset
+from data.dataset import download_dataset
 
 download_dataset()
