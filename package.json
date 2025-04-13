@@ -8,6 +8,7 @@
         "test": "tests"
     },
     "scripts": {
+        "run": "poetry run python src/index.py",
         "black": "poetry run black .",
         "prettier": "prettier --write . --ignore-path=.gitignore",
         "prepare": "husky"
