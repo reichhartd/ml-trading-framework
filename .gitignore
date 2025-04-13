@@ -179,6 +179,7 @@ notebooks/experiments_backup.ipynb
 
 # Data
 /data/
+/notebooks/data/
 kaggle/
 catboost_info/
 
