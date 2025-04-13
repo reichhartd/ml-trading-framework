@@ -177,8 +177,7 @@ cython_debug/
 notebooks/experiments.ipynb
 
 # Data
-data/zip/bitcoin-historical-data.zip
-data/raw/btcusd_1-min_data.csv
+/data/
 
 # Dependencies
 node_modules
