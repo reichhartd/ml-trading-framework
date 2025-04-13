@@ -177,7 +177,7 @@ cython_debug/
 notebooks/experiments.ipynb
 
 # Data
-data/
+/data/
 
 # Dependencies
 node_modules
