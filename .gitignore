@@ -179,6 +179,8 @@ notebooks/experiments_backup.ipynb
 
 # Data
 /data/
+kaggle/
+catboost_info/
 
 # Dependencies
 node_modules
