@@ -175,6 +175,7 @@ cython_debug/
 
 # Notebooks
 notebooks/experiments.ipynb
+notebooks/experiments_backup.ipynb
 
 # Data
 /data/
