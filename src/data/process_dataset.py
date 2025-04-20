@@ -15,7 +15,7 @@ def process_dataset():
     if os.path.exists(PROCESSED_FILE):
         logger.info("Processed file already exists, skipping processing")
         df = pd.read_csv(PROCESSED_FILE, low_memory=False)
-        return df, False, df
+        return df, False
 
     logger.info("Processing dataset")
 
