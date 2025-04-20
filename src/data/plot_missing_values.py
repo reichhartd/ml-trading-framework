@@ -42,5 +42,3 @@ def plot_missing_values(df, figsize=(12, 8)):
         logger.info("Missing Values Summary:\n%s", summary.to_string())
     else:
         logger.info("No missing values found in the dataset")
-
-    return summary
