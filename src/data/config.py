@@ -1,5 +1,12 @@
 import os
 
+from notebooks.baseline_features import (
+    TRAIN_DATA_NAME,
+    VALIDATION_DATA_NAME,
+    TEST_DATA_NAME,
+)
+
+from notebooks.feature_engineering import TRAIN_DATA_FILE
 
 # Zip
 ZIP_PATH = "data/zip/"
@@ -15,3 +22,15 @@ RAW_FILE = os.path.join(RAW_PATH, RAW_NAME)
 PROCESSED_PATH = "data/processed/"
 PROCESSED_NAME = "btcusd_1-min_data_processed.csv"
 PROCESSED_FILE = os.path.join(PROCESSED_PATH, PROCESSED_NAME)
+
+# Training Set (60%)
+TRAIN_DATA_NAME = "train_data.csv"
+TRAIN_DATA_FILE = os.path.join(PROCESSED_PATH, TRAIN_DATA_NAME)
+
+# Validation Set (20%)
+VALIDATION_DATA_NAME = "validation_data.csv"
+VALIDATION_DATA_FILE = os.path.join(PROCESSED_PATH, VALIDATION_DATA_NAME)
+
+# Test Set (20%)
+TEST_DATA_NAME = "test_data.csv"
+TEST_DATA_FILE = os.path.join(PROCESSED_PATH, TEST_DATA_NAME)
