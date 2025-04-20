@@ -1,26 +1,32 @@
-import os
-from kaggle.api.kaggle_api_extended import KaggleApi
-from zipfile import ZipFile
+"""
+This module provides functions to manage the complete dataset workflow.
+"""
+
+from .create_dataframe import create_dataframe
+from .download_dataset import download_dataset
+from .plot_missing_values import plot_missing_values
+from .process_dataset import process_dataset
+from . import data_logger as logger
 
 
-def download_dataset():
-    ZIP_PATH = "data/zip/"
-    ZIP_NAME = "bitcoin-historical-data.zip"
+def prepare_dataset():
+    """Prepare the dataset by downloading and processing it."""
+    logger.info("Starting dataset preparation")
 
-    RAW_PATH = "data/raw/"
-    RAW_NAME = "btcusd_1-min_data.csv"
+    try:
+        logger.info("Downloading dataset")
+        download_dataset()
 
-    # Validate folders exist
-    os.makedirs(ZIP_PATH, exist_ok=True)
-    os.makedirs(RAW_PATH, exist_ok=True)
+        logger.info("Processing dataset")
+        process_dataset()
 
-    api = KaggleApi()
-    api.authenticate()
-    api.dataset_download_files("mczielinski/bitcoin-historical-data", path=ZIP_PATH)
+        logger.info("Creating dataframe")
+        df = create_dataframe()
 
-    # Extract zip
-    zip_file = ZipFile(ZIP_PATH + ZIP_NAME)
-    zip_file.extractall(path=RAW_PATH)
+        logger.info("Plotting missing values")
+        plot_missing_values(df)
 
-    # Remove zip
-    os.remove(ZIP_PATH + ZIP_NAME)
+        logger.info("Dataset preparation completed successfully")
+    except Exception as e:
+        logger.error(f"Error preparing dataset: {e}", exc_info=True)
+        raise
