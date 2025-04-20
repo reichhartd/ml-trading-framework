@@ -2,7 +2,7 @@
 This module provides functions to manage the complete dataset workflow.
 """
 
-from .create_dataframe import create_dataframe
+from .exploring_dataframe import exploring_dataframe
 from .download_dataset import download_dataset
 from .plot_missing_values import plot_missing_values
 from .process_dataset import process_dataset
@@ -16,9 +16,10 @@ def prepare_dataset():
 
     try:
         download_dataset()
-        process_dataset()
-        df = create_dataframe()
-        plot_missing_values(df)
+        df, created_from_scratch = process_dataset()
+        if created_from_scratch:
+            exploring_dataframe(df)
+            plot_missing_values(df)
         train_data, valid_data, test_data = split_dataset(df)
 
         logger.info("Dataset preparation completed successfully")
