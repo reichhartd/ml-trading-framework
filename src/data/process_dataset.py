@@ -15,13 +15,13 @@ def process_dataset():
     if os.path.exists(PROCESSED_FILE):
         return
 
+    logger.info("Processing dataset")
+
     # Check if raw file exists
     if not os.path.exists(RAW_FILE):
         raise FileNotFoundError(
             f"Raw file {RAW_FILE} not found. Run download_dataset() first."
         )
-
-    logger.info("Processing dataset")
 
     # Function to convert Unix timestamp to formatted datetime string
     def convert_timestamp(ts):
