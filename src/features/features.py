@@ -1,15 +1,10 @@
 from . import feature_logger as logger
 from .generate_bull_bear_signals import generate_bull_bear_signals
-from ..data import prepare_dataset
 
 
-def prepare_features():
-
+def prepare_features(train_data, valid_data):
     logger.info("Starting feature preparation")
-
     try:
-        train_data, valid_data = prepare_dataset()
-
         # Limit to the last 100,000 entries (most recent)
         train_data = train_data.tail(100000)
         valid_data = valid_data.tail(100000)
