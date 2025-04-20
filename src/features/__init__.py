@@ -8,5 +8,8 @@ from src.utils.logger import setup_logger
 feature_logger = setup_logger("src.features")
 
 
+# Import and expose submodules
+from .features import prepare_features
+
 # Export public API
-__all__ = ["feature_logger"]
+__all__ = ["prepare_features", "feature_logger"]
