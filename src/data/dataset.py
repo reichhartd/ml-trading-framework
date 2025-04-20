@@ -2,12 +2,11 @@
 This module provides functions to manage the complete dataset workflow.
 """
 
-from src.utils.logger import setup_logger
+from .create_dataframe import create_dataframe
 from .download_dataset import download_dataset
+from .plot_missing_values import plot_missing_values
 from .process_dataset import process_dataset
-
-
-logger = setup_logger(__name__)
+from . import data_logger as logger
 
 
 def prepare_dataset():
@@ -20,6 +19,12 @@ def prepare_dataset():
 
         logger.info("Processing dataset")
         process_dataset()
+
+        logger.info("Creating dataframe")
+        df = create_dataframe()
+
+        logger.info("Plotting missing values")
+        plot_missing_values(df)
 
         logger.info("Dataset preparation completed successfully")
     except Exception as e:
