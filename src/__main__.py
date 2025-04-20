@@ -14,7 +14,7 @@ if __name__ == "__main__":
     try:
         logger.info("Starting ML trading framework execution")
 
-        train_data, valid_data = prepare_dataset()
+        train_data, valid_data, test_data = prepare_dataset()
         prepare_features(train_data, valid_data)
 
         logger.info("ML trading framework execution completed successfully")
