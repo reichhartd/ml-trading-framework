@@ -2,7 +2,7 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 from zipfile import ZipFile
 import os
 
-from .config import ZIP_PATH, RAW_PATH, ZIP_NAME
+from .config import ZIP_PATH, RAW_PATH, ZIP_FILE
 
 
 def download_dataset():
@@ -15,8 +15,8 @@ def download_dataset():
     api.dataset_download_files("mczielinski/bitcoin-historical-data", path=ZIP_PATH)
 
     # Extract zip
-    zip_file = ZipFile(ZIP_PATH + ZIP_NAME)
+    zip_file = ZipFile(ZIP_FILE)
     zip_file.extractall(path=RAW_PATH)
 
     # Remove zip
-    os.remove(ZIP_PATH + ZIP_NAME)
+    os.remove(ZIP_FILE)
