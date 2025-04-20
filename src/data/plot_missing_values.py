@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+from . import data_logger as logger
 
 
 def plot_missing_values(df, figsize=(12, 8)):
@@ -37,9 +38,9 @@ def plot_missing_values(df, figsize=(12, 8)):
     )
 
     if len(summary) > 0:
-        print("Missing Values Summary:")
-        print(summary)
+        logger.info(f"Found {len(summary)} columns with missing values")
+        logger.info("Missing Values Summary:\n%s", summary.to_string())
     else:
-        print("No missing values found in the dataset.")
+        logger.info("No missing values found in the dataset")
 
     return summary
