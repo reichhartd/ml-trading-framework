@@ -7,6 +7,7 @@ from .download_dataset import download_dataset
 from .plot_missing_values import plot_missing_values
 from .process_dataset import process_dataset
 from . import data_logger as logger
+from .split_dataset import split_dataset
 
 
 def prepare_dataset():
@@ -25,6 +26,9 @@ def prepare_dataset():
 
         logger.info("Plotting missing values")
         plot_missing_values(df)
+
+        logger.info("Splitting dataset")
+        split_dataset(df)
 
         logger.info("Dataset preparation completed successfully")
     except Exception as e:
