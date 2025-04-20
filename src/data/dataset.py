@@ -1,5 +1,12 @@
-from src.data.download_dataset import download_dataset
-from src.data.process_dataset import process_dataset
+"""
+This module provides functions to manage the complete dataset workflow.
+"""
 
-download_dataset()
-process_dataset()
+from .download_dataset import download_dataset
+from .process_dataset import process_dataset
+
+
+def prepare_dataset():
+    """Prepare the dataset by downloading and processing it."""
+    download_dataset()
+    process_dataset()
