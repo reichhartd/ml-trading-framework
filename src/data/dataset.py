@@ -17,7 +17,6 @@ def prepare_dataset():
     logger.info("Starting dataset preparation")
 
     try:
-
         if (
             os.path.exists(TRAIN_DATA_FILE)
             and os.path.exists(VALIDATION_DATA_FILE)
