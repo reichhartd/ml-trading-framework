@@ -4,7 +4,9 @@ import pandas as pd
 from . import data_logger as logger
 
 
-def plot_missing_values(df, figsize=(12, 8)):
+def plot_missing_values(df=None, figsize=(12, 8)):
+    logger.info("Plotting missing values")
+
     # Create a figure with two subplots
     fig, axes = plt.subplots(2, 1, figsize=figsize)
 
