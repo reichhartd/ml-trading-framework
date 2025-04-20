@@ -3,8 +3,9 @@ import seaborn as sns
 
 
 def plot_target_correlation(df, target="demand", figsize=(20, 1), return_corr=False):
+    numeric_df = df.select_dtypes(include=["number"])
     # Calculate correlation matrix
-    corr = df.corr()[target].drop(target, errors="ignore")
+    corr = numeric_df.corr()[target].drop(target, errors="ignore")
 
     if return_corr:
         return corr
