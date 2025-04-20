@@ -5,8 +5,8 @@ from .config import PROCESSED_FILE
 from . import data_logger as logger
 
 
-def create_dataframe():
-    logger.info("Creating dataframe")
+def exploring_dataframe():
+    logger.info("Exploring dataframe")
 
     # Skip if processed file doesn't exist
     if not os.path.exists(PROCESSED_FILE):
