@@ -2,11 +2,13 @@
 This module provides functions to manage the complete dataset workflow.
 """
 
-from .create_dataframe import create_dataframe
+from .exploring_dataframe import exploring_dataframe
 from .download_dataset import download_dataset
 from .plot_missing_values import plot_missing_values
 from .process_dataset import process_dataset
 from . import data_logger as logger
+from .split_dataset import split_dataset
+import pandas as pd
 
 
 def prepare_dataset():
@@ -14,19 +16,20 @@ def prepare_dataset():
     logger.info("Starting dataset preparation")
 
     try:
-        logger.info("Downloading dataset")
         download_dataset()
+        df, created_from_scratch = process_dataset()
 
-        logger.info("Processing dataset")
-        process_dataset()
+        df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="s", utc=True)
+        df.set_index("Timestamp", inplace=True)
+        df.drop(columns=["datetime"], inplace=True)
 
-        logger.info("Creating dataframe")
-        df = create_dataframe()
-
-        logger.info("Plotting missing values")
-        plot_missing_values(df)
+        if created_from_scratch:
+            exploring_dataframe(df)
+            plot_missing_values(df)
+        train_data, valid_data, test_data = split_dataset(df)
 
         logger.info("Dataset preparation completed successfully")
+        return train_data, valid_data, test_data
     except Exception as e:
         logger.error(f"Error preparing dataset: {e}", exc_info=True)
         raise
