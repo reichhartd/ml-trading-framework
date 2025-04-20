@@ -9,8 +9,8 @@ def prepare_features(train_data, valid_data):
     logger.info("Starting feature preparation")
     try:
         # Limit to the last 100,000 entries (most recent)
-        train_data = train_data.tail(100000)
-        valid_data = valid_data.tail(100000)
+        train_data = train_data.tail(100000).copy()
+        valid_data = valid_data.tail(100000).copy()
 
         generate_bull_bear_signals(train_data, verbose=True)
         generate_bull_bear_signals(valid_data, verbose=True)
