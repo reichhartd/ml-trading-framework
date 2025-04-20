@@ -1,5 +1,5 @@
 import pandas as pd
-
+import io
 from .config import PROCESSED_FILE
 from . import data_logger as logger
 
@@ -15,11 +15,13 @@ def create_dataframe():
     logger.info("Dropping redundant datetime column")
     df.drop(columns=["datetime"], inplace=True)
 
-    logger.info(f"Dataframe created with shape: {df.shape}")
-    logger.debug("Dataframe info:")
-    df.info(buf=logger.debug)
+    logger.info("Dataframe info:")
+    buffer = io.StringIO()
+    df.info(buf=buffer)
+    logger.info(buffer.getvalue())
 
-    pd.set_option("display.precision", 2)
-    logger.debug("Dataframe statistics:\n%s", df.describe().to_string())
+    pd.set_option("display.float_format", "{:.2f}".format)
+    pd.set_option("display.max_columns", None)
+    logger.info("Dataframe statistics:\n%s", df.describe().to_string())
 
     return df
