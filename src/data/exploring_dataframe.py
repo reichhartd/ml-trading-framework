@@ -6,11 +6,6 @@ from . import data_logger as logger
 def exploring_dataframe(df=None):
     logger.info("Exploring dataframe")
 
-    df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="s", utc=True)
-    df.set_index("Timestamp", inplace=True)
-
-    df.drop(columns=["datetime"], inplace=True)
-
     logger.info("Dataframe info:")
     buffer = io.StringIO()
     df.info(buf=buffer)

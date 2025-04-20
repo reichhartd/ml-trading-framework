@@ -8,6 +8,7 @@ from .plot_missing_values import plot_missing_values
 from .process_dataset import process_dataset
 from . import data_logger as logger
 from .split_dataset import split_dataset
+import pandas as pd
 
 
 def prepare_dataset():
@@ -17,6 +18,11 @@ def prepare_dataset():
     try:
         download_dataset()
         df, created_from_scratch = process_dataset()
+
+        df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="s", utc=True)
+        df.set_index("Timestamp", inplace=True)
+        df.drop(columns=["datetime"], inplace=True)
+
         if created_from_scratch:
             exploring_dataframe(df)
             plot_missing_values(df)
