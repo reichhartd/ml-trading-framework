@@ -1,12 +1,5 @@
 import os
 
-from notebooks.baseline_features import (
-    TRAIN_DATA_NAME,
-    VALIDATION_DATA_NAME,
-    TEST_DATA_NAME,
-)
-
-from notebooks.feature_engineering import TRAIN_DATA_FILE
 
 # Zip
 ZIP_PATH = "data/zip/"
