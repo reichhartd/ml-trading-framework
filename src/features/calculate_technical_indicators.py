@@ -15,7 +15,7 @@ def calculate_technical_indicators(df, plot_data=True, plot_period=None):
     df["SMA_10"] = calc_sma(df, 10)
     df["SMA_30"] = calc_sma(df, 30)
     df["SMA_200"] = calc_sma(df, 200)
-    indicator_groups["Simple Moving Average"] = ["MA_10", "MA_30", "MA_200"]
+    indicator_groups["Simple Moving Average"] = ["SMA_10", "SMA_30", "SMA_200"]
 
     df["EMA_10"] = calc_ema(df, 10)
     df["EMA_30"] = calc_ema(df, 30)
