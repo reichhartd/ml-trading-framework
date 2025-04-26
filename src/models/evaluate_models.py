@@ -8,6 +8,10 @@ import matplotlib.pyplot as plt
 
 
 def evaluate_models(train_data, valid_data, target_feature="signal"):
+    # Handle NaN values in the dataset
+    train_data = train_data.dropna()
+    valid_data = valid_data.dropna()
+
     y_train = train_data[target_feature]
     x_train = train_data.loc[:, train_data.columns != target_feature]
 
@@ -20,6 +24,8 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
 
     print(f"Features used: {x_train.columns}")
     print(f"Target variable: {target_feature}")
+    print(f"Training data shape after removing NaN values: {x_train.shape}")
+    print(f"Validation data shape after removing NaN values: {x_valid.shape}")
     print("")
 
     # Visualize
