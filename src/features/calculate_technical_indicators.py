@@ -1,4 +1,3 @@
-from .plot_line import plot_line
 from .technical_indicators import (
     calculate_simple_moving_average,
     calculate_exponential_moving_average,
@@ -7,6 +6,7 @@ from .technical_indicators import (
     calculate_relative_strength_index,
     calculate_stochastic_oscillator,
 )
+from ..visualization import plot_line
 
 
 def calculate_technical_indicators(df, plot_data=True, plot_period=None):
