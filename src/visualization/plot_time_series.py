@@ -4,7 +4,6 @@ import plotly.graph_objects as go
 
 def plot_time_series(df, columns, title="", subplot_rows=1):
     line_widths = [2] * len(columns)
-    size = [350, 1000]
 
     fig = make_subplots(rows=subplot_rows, shared_xaxes=True)
 
@@ -23,10 +22,9 @@ def plot_time_series(df, columns, title="", subplot_rows=1):
         )
 
     fig.update_layout(
-        height=size[0],
-        width=size[1],
         template="plotly_white",
         title=title,
         margin=dict(l=50, r=80, t=50, b=40),
+        autosize=True,
     )
-    fig.show()
+    fig.show(config={"responsive": True})
