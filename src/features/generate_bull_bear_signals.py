@@ -1,5 +1,6 @@
 import numpy as np
 from ..visualization import plot_time_series
+from ..visualization.plot_correlation_matrix import plot_correlation_matrix
 
 
 def generate_bull_bear_signals(df):
@@ -19,3 +20,4 @@ def generate_bull_bear_signals(df):
         title="SMA_10, SMA_60, Signal (Bull-Bear-Signal)",
         secondary_y=[False, False, True],
     )
+    plot_correlation_matrix(df, "signal")
