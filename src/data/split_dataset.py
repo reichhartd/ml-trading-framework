@@ -13,9 +13,16 @@ def split_dataset(df=None):
         and os.path.exists(TEST_DATA_FILE)
     ):
         logger.info("Split datasets already exist, loading from files")
+
         train_data = pd.read_csv(TRAIN_DATA_FILE)
+        train_data.set_index("Timestamp", inplace=True)
+
         valid_data = pd.read_csv(VALIDATION_DATA_FILE)
+        valid_data.set_index("Timestamp", inplace=True)
+
         test_data = pd.read_csv(TEST_DATA_FILE)
+        test_data.set_index("Timestamp", inplace=True)
+
         return train_data, valid_data, test_data
 
     logger.info("Splitting dataset")
