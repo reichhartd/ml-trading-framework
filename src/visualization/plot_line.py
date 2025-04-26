@@ -2,8 +2,20 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
 
-def plot_line(df, columns, title="", secondary_y=None, size=[350, 1000]):
-    fig = make_subplots(specs=[[{"secondary_y": True}]]) if secondary_y else go.Figure()
+def plot_line(
+    df,
+    columns,
+    title="",
+    nplots=None,
+):
+    secondary_y = None
+    size = [350, 1000]
+
+    fig = (
+        make_subplots(rows=nplots, specs=[[{"secondary_y": True}]])
+        if secondary_y
+        else go.Figure()
+    )
 
     for i, col in enumerate(columns):
         trace = go.Scatter(
