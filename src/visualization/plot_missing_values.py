@@ -1,46 +1,42 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-import pandas as pd
 from . import visualization_logger as logger
 
 
-def plot_missing_values(df=None):
-    logger.info("Plotting missing values")
+def plot_missing_data(df):
+    missing_percentage = (df.isnull().sum() / len(df) * 100).sort_values(
+        ascending=False
+    )
 
-    # Create a figure with two subplots
-    fig, axes = plt.subplots(2, 1)
+    missing_percentage = missing_percentage[missing_percentage > 0]
+    if len(missing_percentage) == 0:
+        logger.info("No missing values found in the dataframe.")
+        return
 
-    # Heatmap of missing values
-    sns.heatmap(df.isna(), cmap="viridis", yticklabels=False, cbar=False, ax=axes[0])
-    axes[0].set_title("Missing Values Heatmap")
-    axes[0].set_xlabel("Variables")
-    axes[0].set_ylabel("Observations")
+    plt.figure()
+    color_palette = sns.color_palette("plasma", len(missing_percentage))
 
-    # Percentage of missing values per column
-    missing_percentage = df.isna().sum() / len(df) * 100
-    missing_percentage.sort_values(ascending=False).plot(kind="bar", ax=axes[1])
-    axes[1].set_title("Percentage of Missing Values per Column")
-    axes[1].set_xlabel("Columns")
-    axes[1].set_ylabel("Percentage of Missing Values")
-    axes[1].grid(axis="y", linestyle="--", alpha=0.7)
+    axes = plt.axes()
+    sns.barplot(
+        x=missing_percentage,
+        y=missing_percentage.index,
+        edgecolor="black",
+        palette=color_palette,
+    )
 
-    # Space between subplots
+    for spine_position in ["top", "right", "bottom", "left"]:
+        axes.spines[spine_position].set_color("black")
+
+    axes.spines["top"].set_visible(True)
+    axes.spines["right"].set_visible(False)
+    axes.spines["bottom"].set_visible(False)
+    axes.spines["left"].set_visible(False)
+
+    plt.title("Missing values (%)", size=15, fontweight="bold")
+    plt.xlabel("Percent (%)")
+    plt.ylabel("")
+
+    axes.grid(axis="x", linestyle="--", alpha=0.9)
+
     plt.tight_layout()
     plt.show()
-
-    # Print summary of missing values
-    missing_values = df.isna().sum()
-    missing_percent = missing_values / len(df) * 100
-    summary = pd.DataFrame(
-        {"Missing Values": missing_values, "Percentage": missing_percent}
-    )
-    # Only show columns with missing values
-    summary = summary[summary["Missing Values"] > 0].sort_values(
-        "Percentage", ascending=False
-    )
-
-    if len(summary) > 0:
-        logger.info(f"Found {len(summary)} columns with missing values")
-        logger.info("Missing Values Summary:\n%s", summary.to_string())
-    else:
-        logger.info("No missing values found in the dataset")
