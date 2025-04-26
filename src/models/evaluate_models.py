@@ -5,6 +5,7 @@ import time
 import plotly.graph_objects as go
 import seaborn as sns
 import matplotlib.pyplot as plt
+from . import models_logger as logger
 
 
 def evaluate_models(train_data, valid_data, target_feature="signal"):
@@ -22,11 +23,11 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
     x_complete = pd.concat([x_train, x_valid], axis=0)
     y_complete = pd.concat([y_train, y_valid], axis=0)
 
-    print(f"Features used: {x_train.columns}")
-    print(f"Target variable: {target_feature}")
-    print(f"Training data shape after removing NaN values: {x_train.shape}")
-    print(f"Validation data shape after removing NaN values: {x_valid.shape}")
-    print("")
+    logger.info(f"Features used: {x_train.columns}")
+    logger.info(f"Target variable: {target_feature}")
+    logger.info(f"Training data shape after removing NaN values: {x_train.shape}")
+    logger.info(f"Validation data shape after removing NaN values: {x_valid.shape}")
+    logger.info("")
 
     # Visualize
     fig = go.Figure()
@@ -86,7 +87,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
         complete_time = time.time() - complete_start_time
 
         # Output results
-        print(
+        logger.info(
             f"{name} : {train_result:.3f} & {valid_result:.3f} -> {train_valid_time:.2f}s | {complete_result:.3f} -> {complete_time:.2f}s"
         )
 
