@@ -1,57 +1,89 @@
 import pandas as pd
+import numpy as np
 
 
-def calculate_simple_moving_average(df, period):
+# Simple Moving Average
+def calc_sma(df, period):
     return pd.Series(
         df["Close"].rolling(period, min_periods=period).mean(),
         name=f"SMA_{period}",
     )
 
 
-def calculate_exponential_moving_average(df, period):
+# Exponential Moving Average
+def calc_ema(df, period):
     return pd.Series(
         df["Close"].ewm(span=period, min_periods=period).mean(),
         name=f"EMA_{period}",
     )
 
 
-def calculate_momentum(df, period):
+# Momentum
+def calc_mom(df, period):
     return pd.Series(df["Close"].diff(period), name=f"Momentum_{period}")
 
 
-def calculate_rate_of_change(df, period):
-    current_price = df["Close"]
-    price_n_periods_ago = df["Close"].shift(period)
+# Rate Of Change
+def calc_roc(df, period):
     return pd.Series(
-        ((current_price - price_n_periods_ago) / price_n_periods_ago) * 100,
+        ((df["Close"].diff(period - 1) / df["Close"].shift(period - 1)) * 100),
         name=f"ROC_{period}",
     )
 
 
-def calculate_relative_strength_index(df, period):
-    delta = df["Close"].diff()
+# Relative Strength Index
+def calc_rsi(df, period):
+    # Calculate price changes
+    price_changes = df["Close"].diff().dropna()
 
-    gains = delta.clip(lower=0)
-    losses = -delta.clip(upper=0)
+    # Initialize gains and losses series with zeros
+    gains = price_changes * 0
+    losses = gains.copy()
 
-    avg_gain = gains.ewm(alpha=1 / period, min_periods=period, adjust=False).mean()
-    avg_loss = losses.ewm(alpha=1 / period, min_periods=period, adjust=False).mean()
+    # Fill gains and losses based on price movement direction
+    gains[price_changes > 0] = price_changes[price_changes > 0]
+    losses[price_changes < 0] = -price_changes[price_changes < 0]
 
-    epsilon = 1e-10
-    rs = avg_gain / (avg_loss + epsilon)
+    # Set first usable value as average of initial period
+    gains[gains.index[period - 1]] = np.mean(
+        gains[:period]
+    )  # First value is average of initial gains
+    gains = gains.drop(gains.index[: (period - 1)])  # Remove initialization data
 
-    rsi = 100 - (100 / (1 + rs))
+    losses[losses.index[period - 1]] = np.mean(
+        losses[:period]
+    )  # First value is average of initial losses
+    losses = losses.drop(losses.index[: (period - 1)])  # Remove initialization data
 
-    return pd.Series(rsi, name=f"RSI_{period}")
+    # Calculate relative strength using exponential weighted moving average
+    relative_strength = (
+        gains.ewm(com=period - 1, adjust=False).mean()
+        / losses.ewm(com=period - 1, adjust=False).mean()
+    )
+
+    # Calculate and return RSI values
+    rsi_values = 100 - 100 / (1 + relative_strength)
+    return pd.Series(rsi_values, name=f"RSI_{period}")
 
 
-def calculate_stochastic_oscillator(df, period, k_or_d="k"):
+# Stochastic Oscillator
+def calc_osc(df, period, k_or_d="k"):
+    """
+    Calculate Stochastic Oscillator values.
+
+    Parameters:
+    - df: DataFrame
+    - period
+    - k_or_d:
+        - "k": Returns %K line (raw stochastic value)
+        - "d": Returns %D line (3-period moving average of %K)
+    """
     stoch_k = (
         (df["Close"] - df["Low"].rolling(period).min())
         / (df["High"].rolling(period).max() - df["Low"].rolling(period).min())
     ) * 100
     if k_or_d.lower() == "k":
-        return pd.Series(stoch_k, name=f"Stochastic_K_{period}")
+        return pd.Series(stoch_k, name=f"STOCH_%K_{period}")
     else:
         stoch_d = stoch_k.rolling(3).mean()
-        return pd.Series(stoch_d, name=f"Stochastic_D_{period}")
+        return pd.Series(stoch_d, name=f"STOCH_%D_{period}")

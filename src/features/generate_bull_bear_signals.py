@@ -1,5 +1,8 @@
 import numpy as np
+
+from ..config import PLOT_DATA, PLOT_DATA_POINTS
 from ..visualization import plot_time_series
+from ..visualization.plot_correlation_matrix import plot_correlation_matrix
 
 
 def generate_bull_bear_signals(df):
@@ -12,4 +15,12 @@ def generate_bull_bear_signals(df):
     # the strategy generates a buy signal (1); otherwise it produces a sell signal (0).
     df["signal"] = np.where(df["SMA_10"] > df["SMA_60"], 1.0, 0.0)
 
-    plot_time_series(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)", 2)
+    if PLOT_DATA:
+        plot_time_series(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)", 2)
+        plot_time_series(
+            df.tail(PLOT_DATA_POINTS).copy(),
+            ["SMA_10", "SMA_60", "signal"],
+            title="SMA_10, SMA_60, Signal (Bull-Bear-Signal)",
+            secondary_y=[False, False, True],
+        )
+        plot_correlation_matrix(df, "signal")

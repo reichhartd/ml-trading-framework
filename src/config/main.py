@@ -34,7 +34,11 @@ VALIDATION_DATA_WITH_FEATURES_FILE = os.path.join(
     PROCESSED_PATH, VALIDATION_DATA_WITH_FEATURES_NAME
 )
 
-
 # Test Set (20%)
 TEST_DATA_NAME = "test_data.csv"
 TEST_DATA_FILE = os.path.join(PROCESSED_PATH, TEST_DATA_NAME)
+
+# Visualization
+PLOT_DATA = True
+# 8h * 60 min -> First 8 hours
+PLOT_DATA_POINTS = 8 * 60
