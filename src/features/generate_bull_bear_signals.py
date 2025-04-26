@@ -1,4 +1,6 @@
 import numpy as np
+
+from ..config import PLOT_DATA_POINTS
 from ..visualization import plot_time_series
 from ..visualization.plot_correlation_matrix import plot_correlation_matrix
 
@@ -15,7 +17,7 @@ def generate_bull_bear_signals(df):
 
     plot_time_series(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)", 2)
     plot_time_series(
-        df.tail(8 * 60).copy(),
+        df.tail(PLOT_DATA_POINTS).copy(),
         ["SMA_10", "SMA_60", "signal"],
         title="SMA_10, SMA_60, Signal (Bull-Bear-Signal)",
         secondary_y=[False, False, True],
