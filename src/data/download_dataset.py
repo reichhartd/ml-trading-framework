@@ -3,7 +3,7 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 from zipfile import ZipFile
 import os
 
-from .config import ZIP_PATH, RAW_PATH, ZIP_FILE, RAW_FILE
+from ..config import ZIP_PATH, RAW_PATH, ZIP_FILE, RAW_FILE
 
 
 def download_dataset():
