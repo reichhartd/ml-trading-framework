@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 
 
-models = [
+selected_models = [
     ("LDA", LinearDiscriminantAnalysis()),
     ("KNN", KNeighborsClassifier()),
     ("TREE", DecisionTreeClassifier()),
