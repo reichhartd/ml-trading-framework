@@ -38,9 +38,9 @@ def calculate_technical_indicators(df):
     df["RSI_200"] = calc_rsi(df, 200)
     indicator_groups["Relative Strength Index"] = ["RSI_10", "RSI_30", "RSI_200"]
 
-    df["STOCH_%K_10"] = calc_osc(df, 10, "k")
-    df["STOCH_%K_30"] = calc_osc(df, 30, "k")
-    df["STOCH_%K_200"] = calc_osc(df, 200, "k")
+    df["STOCH_%K_10"] = calc_osc(df, 5, "k")
+    df["STOCH_%K_30"] = calc_osc(df, 10, "k")
+    df["STOCH_%K_200"] = calc_osc(df, 20, "k")
     indicator_groups["Stochastic Oscillator (Slow)"] = [
         "STOCH_%K_10",
         "STOCH_%K_30",
