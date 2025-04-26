@@ -1,25 +1,29 @@
 import pandas as pd
 
 
-def calculate_simple_moving_average(df, period):
+# Simple Moving Average
+def calc_sma(df, period):
     return pd.Series(
         df["Close"].rolling(period, min_periods=period).mean(),
         name=f"SMA_{period}",
     )
 
 
-def calculate_exponential_moving_average(df, period):
+# Exponential Moving Average
+def calc_ema(df, period):
     return pd.Series(
         df["Close"].ewm(span=period, min_periods=period).mean(),
         name=f"EMA_{period}",
     )
 
 
-def calculate_momentum(df, period):
+# Momentum
+def calc_mom(df, period):
     return pd.Series(df["Close"].diff(period), name=f"Momentum_{period}")
 
 
-def calculate_rate_of_change(df, period):
+# Rate Of Change
+def calc_roc(df, period):
     current_price = df["Close"]
     price_n_periods_ago = df["Close"].shift(period)
     return pd.Series(
@@ -28,7 +32,8 @@ def calculate_rate_of_change(df, period):
     )
 
 
-def calculate_relative_strength_index(df, period):
+# Relative Strength Index
+def calc_rsi(df, period):
     delta = df["Close"].diff()
 
     gains = delta.clip(lower=0)
@@ -45,7 +50,8 @@ def calculate_relative_strength_index(df, period):
     return pd.Series(rsi, name=f"RSI_{period}")
 
 
-def calculate_stochastic_oscillator(df, period, k_or_d="k"):
+# Stochastic Oscillator
+def calc_osc(df, period, k_or_d="k"):
     stoch_k = (
         (df["Close"] - df["Low"].rolling(period).min())
         / (df["High"].rolling(period).max() - df["Low"].rolling(period).min())
