@@ -13,10 +13,13 @@ def prepare_features(train_data, valid_data):
             VALIDATION_DATA_WITH_FEATURES_FILE
         ):
             logger.info("Feature files already exist, loading directly")
+
             train_data = pd.read_csv(TRAIN_DATA_WITH_FEATURES_FILE)
             train_data.set_index("Timestamp", inplace=True)
+
             valid_data = pd.read_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
             valid_data.set_index("Timestamp", inplace=True)
+
             return train_data, valid_data
 
         logger.info("Feature files don't exist, generating features")
