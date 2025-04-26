@@ -2,7 +2,6 @@ from . import feature_logger as logger
 from .calculate_technical_indicators import calculate_technical_indicators
 from .generate_bull_bear_signals import generate_bull_bear_signals
 from ..config import TRAIN_DATA_WITH_FEATURES_FILE, VALIDATION_DATA_WITH_FEATURES_FILE
-from ..visualization import plot_target_correlation
 
 
 def prepare_features(train_data, valid_data):
@@ -17,8 +16,6 @@ def prepare_features(train_data, valid_data):
 
         calculate_technical_indicators(train_data)
         calculate_technical_indicators(valid_data)
-
-        plot_target_correlation(train_data, "signal")
 
         train_data.to_csv(TRAIN_DATA_WITH_FEATURES_FILE)
         valid_data.to_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
