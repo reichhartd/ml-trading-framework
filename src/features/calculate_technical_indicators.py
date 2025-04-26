@@ -7,7 +7,11 @@ from .technical_indicators import (
     calc_osc,
 )
 from ..config import PLOT_DATA, PLOT_DATA_POINTS
-from ..visualization import plot_time_series, plot_correlation_matrix
+from ..visualization import (
+    plot_time_series,
+    plot_correlation_matrix,
+    plot_missing_data,
+)
 
 
 def calculate_technical_indicators(df):
@@ -65,5 +69,6 @@ def calculate_technical_indicators(df):
                 title=f"{title} (periods=10,30,200)",
             )
         plot_correlation_matrix(df, "signal")
+        plot_missing_data(df)
 
     return df
