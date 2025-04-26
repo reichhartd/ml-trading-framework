@@ -1,10 +1,10 @@
 from .technical_indicators import (
-    calculate_simple_moving_average,
-    calculate_exponential_moving_average,
-    calculate_momentum,
-    calculate_rate_of_change,
-    calculate_relative_strength_index,
-    calculate_stochastic_oscillator,
+    calc_sma,
+    calc_ema,
+    calc_mom,
+    calc_roc,
+    calc_rsi,
+    calc_osc,
 )
 from ..visualization import plot_time_series
 
@@ -12,43 +12,43 @@ from ..visualization import plot_time_series
 def calculate_technical_indicators(df, plot_data=True, plot_period=None):
     indicator_groups = {}
 
-    df["MA10"] = calculate_simple_moving_average(df, 10)
-    df["MA30"] = calculate_simple_moving_average(df, 30)
-    df["MA200"] = calculate_simple_moving_average(df, 200)
-    indicator_groups["Simple Moving Average"] = ["MA10", "MA30", "MA200"]
+    df["SMA_10"] = calc_sma(df, 10)
+    df["SMA_30"] = calc_sma(df, 30)
+    df["SMA_200"] = calc_sma(df, 200)
+    indicator_groups["Simple Moving Average"] = ["MA_10", "MA_30", "MA_200"]
 
-    df["EMA10"] = calculate_exponential_moving_average(df, 10)
-    df["EMA30"] = calculate_exponential_moving_average(df, 30)
-    df["EMA200"] = calculate_exponential_moving_average(df, 200)
-    indicator_groups["Exponential Moving Average"] = ["EMA10", "EMA30", "EMA200"]
+    df["EMA_10"] = calc_ema(df, 10)
+    df["EMA_30"] = calc_ema(df, 30)
+    df["EMA_200"] = calc_ema(df, 200)
+    indicator_groups["Exponential Moving Average"] = ["EMA_10", "EMA_30", "EMA_200"]
 
-    df["MOM10"] = calculate_momentum(df, 10)
-    df["MOM30"] = calculate_momentum(df, 30)
-    df["MOM200"] = calculate_momentum(df, 200)
-    indicator_groups["Momentum"] = ["MOM10", "MOM30", "MOM200"]
+    df["MOM_10"] = calc_mom(df, 10)
+    df["MOM_30"] = calc_mom(df, 30)
+    df["MOM_200"] = calc_mom(df, 200)
+    indicator_groups["Momentum"] = ["MOM_10", "MOM_30", "MOM_200"]
 
-    df["ROC10"] = calculate_rate_of_change(df, 10)
-    df["ROC30"] = calculate_rate_of_change(df, 30)
-    df["ROC200"] = calculate_rate_of_change(df, 200)
-    indicator_groups["Rate of Change"] = ["ROC10", "ROC30", "ROC200"]
+    df["ROC_10"] = calc_roc(df, 10)
+    df["ROC_30"] = calc_roc(df, 30)
+    df["ROC_200"] = calc_roc(df, 200)
+    indicator_groups["Rate of Change"] = ["ROC_10", "ROC_30", "ROC_200"]
 
-    df["RSI10"] = calculate_relative_strength_index(df, 10)
-    df["RSI30"] = calculate_relative_strength_index(df, 30)
-    df["RSI200"] = calculate_relative_strength_index(df, 200)
-    indicator_groups["Relative Strength Index"] = ["RSI10", "RSI30", "RSI200"]
+    df["RSI_10"] = calc_rsi(df, 10)
+    df["RSI_30"] = calc_rsi(df, 30)
+    df["RSI_200"] = calc_rsi(df, 200)
+    indicator_groups["Relative Strength Index"] = ["RSI_10", "RSI_30", "RSI_200"]
 
-    df["STOCH_K_10"] = calculate_stochastic_oscillator(df, 10, "k")
-    df["STOCH_K_30"] = calculate_stochastic_oscillator(df, 30, "k")
-    df["STOCH_K_200"] = calculate_stochastic_oscillator(df, 200, "k")
+    df["STOCH_K_10"] = calc_osc(df, 10, "k")
+    df["STOCH_K_30"] = calc_osc(df, 30, "k")
+    df["STOCH_K_200"] = calc_osc(df, 200, "k")
     indicator_groups["Stochastic Oscillator (Fast)"] = [
         "STOCH_K_10",
         "STOCH_K_30",
         "STOCH_K_200",
     ]
 
-    df["STOCH_D_10"] = calculate_stochastic_oscillator(df, 10, "d")
-    df["STOCH_D_30"] = calculate_stochastic_oscillator(df, 30, "d")
-    df["STOCH_D_200"] = calculate_stochastic_oscillator(df, 200, "d")
+    df["STOCH_D_10"] = calc_osc(df, 10, "d")
+    df["STOCH_D_30"] = calc_osc(df, 30, "d")
+    df["STOCH_D_200"] = calc_osc(df, 200, "d")
     indicator_groups["Stochastic Oscillator (Slow)"] = [
         "STOCH_D_10",
         "STOCH_D_30",
