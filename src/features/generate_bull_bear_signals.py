@@ -1,5 +1,5 @@
 import numpy as np
-from ..visualization import plot_line
+from ..visualization import plot_time_series
 
 
 def generate_bull_bear_signals(df):
@@ -12,4 +12,4 @@ def generate_bull_bear_signals(df):
     # the strategy generates a buy signal (1); otherwise it produces a sell signal (0).
     df["signal"] = np.where(df["SMA_10"] > df["SMA_60"], 1.0, 0.0)
 
-    plot_line(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)")
+    plot_time_series(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)", 2)
