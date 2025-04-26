@@ -25,3 +25,5 @@ def generate_bull_bear_signals(df):
             secondary_y=[False, False, True],
         )
         plot_correlation_matrix(df, "signal")
+
+    return df
