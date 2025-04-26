@@ -13,3 +13,8 @@ def generate_bull_bear_signals(df):
     df["signal"] = np.where(df["SMA_10"] > df["SMA_60"], 1.0, 0.0)
 
     plot_time_series(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)", 2)
+    plot_time_series(
+        df.tail(8 * 60).copy(),
+        ["SMA_10", "SMA_60", "signal"],
+        title="SMA_10, SMA_60, Signal (Bull-Bear-Signal)",
+    )
