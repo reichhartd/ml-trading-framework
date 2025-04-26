@@ -27,7 +27,6 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
     logger.info(f"Target variable: {target_feature}")
     logger.info(f"Training data shape after removing NaN values: {x_train.shape}")
     logger.info(f"Validation data shape after removing NaN values: {x_valid.shape}")
-    logger.info("")
 
     # Visualize
     fig = go.Figure()
