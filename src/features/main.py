@@ -21,8 +21,8 @@ def prepare_features(train_data, valid_data):
 
         plot_target_correlation(train_data, "signal")
 
-        to_timestamp_csv(train_data, TRAIN_DATA_WITH_FEATURES_FILE)
-        to_timestamp_csv(valid_data, VALIDATION_DATA_WITH_FEATURES_FILE)
+        train_data.to_csv(TRAIN_DATA_WITH_FEATURES_FILE)
+        valid_data.to_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
 
     except Exception as e:
         logger.error(f"Error preparing features: {e}", exc_info=True)
