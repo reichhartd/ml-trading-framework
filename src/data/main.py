@@ -9,7 +9,7 @@ from . import data_logger as logger
 from .split_dataset import split_dataset
 import pandas as pd
 
-from ..visualization import plot_missing_values
+from ..visualization import plot_missing_data
 
 
 def prepare_dataset():

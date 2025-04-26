@@ -10,7 +10,7 @@ from ..config import PLOT_DATA, PLOT_DATA_POINTS
 from ..visualization import (
     plot_time_series,
     plot_correlation_matrix,
-    plot_missing_values,
+    plot_missing_data,
 )
 
 
