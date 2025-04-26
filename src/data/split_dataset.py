@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 from . import data_logger as logger
-from .to_timestamp_csv import to_timestamp_csv
 from ..config import TRAIN_DATA_FILE, VALIDATION_DATA_FILE, TEST_DATA_FILE
 
 
@@ -46,8 +45,8 @@ def split_dataset(df=None):
     logger.info(f"Test set: {test_data.index.min()} to {test_data.index.max()}")
 
     # Saving the split data records
-    to_timestamp_csv(train_data, TRAIN_DATA_FILE)
-    to_timestamp_csv(valid_data, VALIDATION_DATA_FILE)
-    to_timestamp_csv(test_data, TEST_DATA_FILE)
+    train_data.to_csv(TRAIN_DATA_FILE)
+    valid_data.to_csv(VALIDATION_DATA_FILE)
+    test_data.to_csv(TEST_DATA_FILE)
 
     return train_data, valid_data, test_data
