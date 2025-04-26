@@ -68,12 +68,22 @@ def calc_rsi(df, period):
 
 # Stochastic Oscillator
 def calc_osc(df, period, k_or_d="k"):
+    """
+    Calculate Stochastic Oscillator values.
+
+    Parameters:
+    - df: DataFrame
+    - period
+    - k_or_d:
+        - "k": Returns %K line (raw stochastic value)
+        - "d": Returns %D line (3-period moving average of %K)
+    """
     stoch_k = (
         (df["Close"] - df["Low"].rolling(period).min())
         / (df["High"].rolling(period).max() - df["Low"].rolling(period).min())
     ) * 100
     if k_or_d.lower() == "k":
-        return pd.Series(stoch_k, name=f"Stochastic_K_{period}")
+        return pd.Series(stoch_k, name=f"Stochastic_%K_{period}")
     else:
         stoch_d = stoch_k.rolling(3).mean()
-        return pd.Series(stoch_d, name=f"Stochastic_D_{period}")
+        return pd.Series(stoch_d, name=f"Stochastic_%D_{period}")
