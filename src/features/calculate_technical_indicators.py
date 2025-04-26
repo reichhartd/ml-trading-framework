@@ -6,7 +6,7 @@ from .technical_indicators import (
     calculate_relative_strength_index,
     calculate_stochastic_oscillator,
 )
-from ..visualization import plot_line
+from ..visualization import plot_time_series
 
 
 def calculate_technical_indicators(df, plot_data=True, plot_period=None):
@@ -59,7 +59,7 @@ def calculate_technical_indicators(df, plot_data=True, plot_period=None):
         plot_period_data = df if plot_period is None else df.loc[plot_period]
 
         for title, indicators in indicator_groups.items():
-            plot_line(
+            plot_time_series(
                 plot_period_data[indicators],
                 indicators,
                 title=f"{title} (periods=10,30,200)",
