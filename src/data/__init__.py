@@ -8,7 +8,7 @@ from src.utils.logger import setup_logger
 data_logger = setup_logger("src.data")
 
 # Import and expose submodules
-from .dataset import prepare_dataset
+from .main import prepare_dataset
 from .config import PROCESSED_PATH
 
 # Export public API
