@@ -54,8 +54,12 @@ def prepare_features(train_data, valid_data):
         train_data_baseline.to_csv(TRAIN_DATA_BASELINE_FILE)
         valid_data_baseline.to_csv(VALIDATION_DATA_BASELINE_FILE)
 
-        train_data_technical = calculate_technical_indicators(train_data.copy())
-        valid_data_technical = calculate_technical_indicators(valid_data.copy())
+        train_data_technical = calculate_technical_indicators(
+            train_data_baseline.copy()
+        )
+        valid_data_technical = calculate_technical_indicators(
+            valid_data_baseline.copy()
+        )
 
         train_data_technical.to_csv(TRAIN_DATA_TECHNICAL_FILE)
         valid_data_technical.to_csv(VALIDATION_DATA_TECHNICAL_FILE)
