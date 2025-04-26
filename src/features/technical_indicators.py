@@ -34,7 +34,7 @@ def calc_roc(df, period):
 # Relative Strength Index
 def calc_rsi(df, period):
     # Calculate price changes
-    price_changes = df.diff().dropna()
+    price_changes = df["Close"].diff().dropna()
 
     # Initialize gains and losses series with zeros
     gains = price_changes * 0
