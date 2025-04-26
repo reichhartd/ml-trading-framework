@@ -24,11 +24,8 @@ def calc_mom(df, period):
 
 # Rate Of Change
 def calc_roc(df, period):
-    current_price = df["Close"]
-    price_n_periods_ago = df["Close"].shift(period)
     return pd.Series(
-        ((current_price - price_n_periods_ago) / price_n_periods_ago) * 100,
-        name=f"ROC_{period}",
+        ((df.diff(period - 1) / df.shift(period - 1)) * 100), name=f"ROC_{period}"
     )
 
 
