@@ -6,7 +6,6 @@ def plot_correlation_matrix(
     df,
     target="",
 ):
-
     if target not in df.columns:
         raise ValueError(f"Target variable '{target}' not found in dataframe columns")
 
