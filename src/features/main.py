@@ -2,7 +2,6 @@ from . import feature_logger as logger
 from .calculate_technical_indicators import calculate_technical_indicators
 from .generate_bull_bear_signals import generate_bull_bear_signals
 from ..config import TRAIN_DATA_WITH_FEATURES_FILE, VALIDATION_DATA_WITH_FEATURES_FILE
-from ..data import to_timestamp_csv
 from ..visualization import plot_target_correlation
 
 
