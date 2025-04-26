@@ -2,6 +2,7 @@ from . import feature_logger as logger
 from .calculate_technical_indicators import calculate_technical_indicators
 from .generate_bull_bear_signals import generate_bull_bear_signals
 from ..config import TRAIN_DATA_WITH_FEATURES_FILE, VALIDATION_DATA_WITH_FEATURES_FILE
+from ..data import to_timestamp_csv
 from ..visualization import plot_target_correlation
 
 
@@ -20,8 +21,8 @@ def prepare_features(train_data, valid_data):
 
         plot_target_correlation(train_data, "signal")
 
-        train_data.to_csv(TRAIN_DATA_WITH_FEATURES_FILE)
-        valid_data.to_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
+        to_timestamp_csv(train_data, TRAIN_DATA_WITH_FEATURES_FILE)
+        to_timestamp_csv(valid_data, VALIDATION_DATA_WITH_FEATURES_FILE)
 
     except Exception as e:
         logger.error(f"Error preparing features: {e}", exc_info=True)
