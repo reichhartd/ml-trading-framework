@@ -8,9 +8,9 @@ def evaluate_models(train_df, valid_df):
     target_column = "signal"
     feature_columns = [column for column in train_df.columns if column != target_column]
 
-    X_train = train_df[feature_columns]
+    x_train = train_df[feature_columns]
     y_train = train_df[target_column]
-    X_valid = valid_df[feature_columns]
+    x_valid = valid_df[feature_columns]
     y_valid = valid_df[target_column]
 
     # Store results
@@ -25,14 +25,14 @@ def evaluate_models(train_df, valid_df):
 
         # Train model
         start_time = time.time()
-        model.fit(X_train, y_train)
+        model.fit(x_train, y_train)
 
         # Evaluate on training data
-        train_predictions = model.predict(X_train)
+        train_predictions = model.predict(x_train)
         train_accuracy = accuracy_score(train_predictions, y_train)
 
         # Evaluate on evaluation data
-        eval_predictions = model.predict(X_valid)
+        eval_predictions = model.predict(x_valid)
         eval_accuracy = accuracy_score(eval_predictions, y_valid)
 
         end_time = time.time()
