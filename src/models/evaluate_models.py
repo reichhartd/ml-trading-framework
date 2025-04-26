@@ -49,13 +49,12 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
         )
     )
     fig.update_layout(
-        height=300,
-        width=800,
+        autosize=True,
         template="plotly_white",
         title="Training/Validation Data Visualization",
         margin=dict(l=50, r=80, t=50, b=40),
     )
-    fig.show()
+    fig.show(config={"responsive": True})
 
     # Initialize result lists
     model_names = []
@@ -102,7 +101,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
 
     # Visualize results
     sns.set(style="whitegrid")
-    plt.figure(figsize=(10, 6))
+    plt.figure()
     sns.heatmap(
         results_df,
         vmin=0.5,
@@ -115,6 +114,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
         cmap="Blues",
     )
     plt.title("Accuracy Scores")
+    plt.tight_layout()
     plt.show()
 
     return results_df
