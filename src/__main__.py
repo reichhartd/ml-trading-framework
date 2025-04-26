@@ -5,7 +5,7 @@ Run this module with: python -m src
 """
 
 from src.features import prepare_features
-from src.models.main import prepare_models
+from src.models import prepare_models
 from src.utils.logger import setup_logger
 from src.data import prepare_dataset
 
