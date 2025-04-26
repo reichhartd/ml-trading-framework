@@ -69,6 +69,6 @@ def calculate_technical_indicators(df):
                 title=f"{title} (periods=10,30,200)",
             )
         plot_correlation_matrix(df, "signal")
-        plot_missing_values(df)
+        plot_missing_data(df)
 
     return df
