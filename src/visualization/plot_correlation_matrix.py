@@ -27,5 +27,3 @@ def plot_correlation_matrix(
     plt.title(f"Feature Correlation to {target}")
     plt.tight_layout()
     plt.show()
-
-    return None
