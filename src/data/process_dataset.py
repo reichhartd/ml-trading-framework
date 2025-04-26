@@ -1,10 +1,10 @@
-from .config import PROCESSED_FILE, RAW_FILE, PROCESSED_PATH
 import os
 import shutil
 from datetime import datetime
 import pandas as pd
 import pytz
 from . import data_logger as logger
+from ..config import PROCESSED_PATH, PROCESSED_FILE, RAW_FILE
 
 
 def process_dataset():
