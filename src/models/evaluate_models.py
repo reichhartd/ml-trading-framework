@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from . import models_logger as logger
 
 
-def evaluate_models(train_data, valid_data, target_feature="signal"):
+def evaluate_models(train_data, valid_data, target_feature="signal", dataset_type=""):
     # Handle NaN values in the dataset
     train_data = train_data.dropna()
     valid_data = valid_data.dropna()
@@ -23,6 +23,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
     x_complete = pd.concat([x_train, x_valid], axis=0)
     y_complete = pd.concat([y_train, y_valid], axis=0)
 
+    logger.info(f"Dataset type: {dataset_type}")
     logger.info(f"Features used: {x_train.columns}")
     logger.info(f"Target variable: {target_feature}")
     logger.info(f"Training data shape after removing NaN values: {x_train.shape}")
@@ -51,7 +52,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
     fig.update_layout(
         autosize=True,
         template="plotly_white",
-        title="Training/Validation Data Visualization",
+        title=f"{dataset_type} Features - Training/Validation Data Visualization",
         margin=dict(l=50, r=80, t=50, b=40),
     )
     fig.show(config={"responsive": True})
@@ -113,7 +114,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal"):
         fmt=".3f",
         cmap="Blues",
     )
-    plt.title("Accuracy Scores")
+    plt.title(f"{dataset_type} Features - Accuracy Scores")
     plt.tight_layout()
     plt.show()
 
