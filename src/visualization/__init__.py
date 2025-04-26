@@ -9,8 +9,9 @@ visualization_logger = setup_logger("src.visualization")
 
 
 # Import and expose submodules
+from .plot_missing_values import plot_missing_values
 from .plot_line import plot_line
 from .plot_target_correlation import plot_target_correlation
 
 # Export public API
-__all__ = ["plot_line", "plot_target_correlation"]
+__all__ = ["plot_missing_values", "plot_line", "plot_target_correlation"]
