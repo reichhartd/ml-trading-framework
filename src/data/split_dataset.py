@@ -1,6 +1,7 @@
 import os
 import pandas as pd
-from . import data_logger as logger, to_timestamp_csv
+from . import data_logger as logger
+from .to_timestamp_csv import to_timestamp_csv
 from ..config import TRAIN_DATA_FILE, VALIDATION_DATA_FILE, TEST_DATA_FILE
 
 
