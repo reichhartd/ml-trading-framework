@@ -83,7 +83,7 @@ def calc_osc(df, period, k_or_d="k"):
         / (df["High"].rolling(period).max() - df["Low"].rolling(period).min())
     ) * 100
     if k_or_d.lower() == "k":
-        return pd.Series(stoch_k, name=f"Stochastic_%K_{period}")
+        return pd.Series(stoch_k, name=f"STOCH_%K_{period}")
     else:
         stoch_d = stoch_k.rolling(3).mean()
-        return pd.Series(stoch_d, name=f"Stochastic_%D_{period}")
+        return pd.Series(stoch_d, name=f"STOCH_%D_{period}")
