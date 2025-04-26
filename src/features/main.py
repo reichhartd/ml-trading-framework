@@ -17,6 +17,9 @@ def prepare_features(train_data, valid_data):
         calculate_technical_indicators(train_data)
         # calculate_technical_indicators(valid_data)
 
+        train_data = train_data.dropna()
+        # valid_data = valid_data.dropna()
+
         train_data.to_csv(TRAIN_DATA_WITH_FEATURES_FILE)
         # valid_data.to_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
 
