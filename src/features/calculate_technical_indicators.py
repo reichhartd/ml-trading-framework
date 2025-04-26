@@ -38,22 +38,22 @@ def calculate_technical_indicators(df):
     df["RSI_200"] = calc_rsi(df, 200)
     indicator_groups["Relative Strength Index"] = ["RSI_10", "RSI_30", "RSI_200"]
 
-    df["STOCH_K_10"] = calc_osc(df, 10, "k")
-    df["STOCH_K_30"] = calc_osc(df, 30, "k")
-    df["STOCH_K_200"] = calc_osc(df, 200, "k")
-    indicator_groups["Stochastic Oscillator (Fast)"] = [
-        "STOCH_K_10",
-        "STOCH_K_30",
-        "STOCH_K_200",
+    df["STOCH_%K_10"] = calc_osc(df, 10, "k")
+    df["STOCH_%K_30"] = calc_osc(df, 30, "k")
+    df["STOCH_%K_200"] = calc_osc(df, 200, "k")
+    indicator_groups["Stochastic Oscillator (Slow)"] = [
+        "STOCH_%K_10",
+        "STOCH_%K_30",
+        "STOCH_%K_200",
     ]
 
-    df["STOCH_D_10"] = calc_osc(df, 10, "d")
-    df["STOCH_D_30"] = calc_osc(df, 30, "d")
-    df["STOCH_D_200"] = calc_osc(df, 200, "d")
-    indicator_groups["Stochastic Oscillator (Slow)"] = [
-        "STOCH_D_10",
-        "STOCH_D_30",
-        "STOCH_D_200",
+    df["STOCH_%D_10"] = calc_osc(df, 10, "d")
+    df["STOCH_%D_30"] = calc_osc(df, 30, "d")
+    df["STOCH_%D_200"] = calc_osc(df, 200, "d")
+    indicator_groups["Stochastic Oscillator (Fast)"] = [
+        "STOCH_%D_10",
+        "STOCH_%D_30",
+        "STOCH_%D_200",
     ]
 
     if PLOT_DATA:
