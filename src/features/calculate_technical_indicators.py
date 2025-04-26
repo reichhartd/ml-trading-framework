@@ -8,6 +8,7 @@ from .technical_indicators import (
 )
 from ..config import PLOT_DATA, PLOT_DATA_POINTS
 from ..visualization import plot_time_series
+from ..visualization.plot_correlation_matrix import plot_correlation_matrix
 
 
 def calculate_technical_indicators(df):
@@ -64,5 +65,6 @@ def calculate_technical_indicators(df):
                 indicators,
                 title=f"{title} (periods=10,30,200)",
             )
+        plot_correlation_matrix(df, "signal")
 
     return df
