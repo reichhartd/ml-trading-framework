@@ -1,8 +1,8 @@
 from . import feature_logger as logger
 from .calculate_technical_indicators import calculate_technical_indicators
-from .config import TRAIN_DATA_WITH_FEATURES_FILE, VALIDATION_DATA_WITH_FEATURES_FILE
 from .generate_bull_bear_signals import generate_bull_bear_signals
-from .plot_target_correlation import plot_target_correlation
+from ..config import TRAIN_DATA_WITH_FEATURES_FILE, VALIDATION_DATA_WITH_FEATURES_FILE
+from ..visualization import plot_target_correlation
 
 
 def prepare_features(train_data, valid_data):
