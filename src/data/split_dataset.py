@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from . import data_logger as logger
-from .config import TRAIN_DATA_FILE, VALIDATION_DATA_FILE, TEST_DATA_FILE
+from ..config import TRAIN_DATA_FILE, VALIDATION_DATA_FILE, TEST_DATA_FILE
 
 
 def split_dataset(df=None):
