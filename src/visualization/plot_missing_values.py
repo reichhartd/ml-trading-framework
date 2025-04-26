@@ -4,11 +4,11 @@ import pandas as pd
 from . import visualization_logger as logger
 
 
-def plot_missing_values(df=None, figsize=(12, 8)):
+def plot_missing_values(df=None):
     logger.info("Plotting missing values")
 
     # Create a figure with two subplots
-    fig, axes = plt.subplots(2, 1, figsize=figsize)
+    fig, axes = plt.subplots(2, 1)
 
     # Heatmap of missing values
     sns.heatmap(df.isna(), cmap="viridis", yticklabels=False, cbar=False, ax=axes[0])
