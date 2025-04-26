@@ -11,11 +11,11 @@ def prepare_features(train_data, valid_data):
         train_data = train_data.tail(100000).copy()
         valid_data = valid_data.tail(100000).copy()
 
-        generate_bull_bear_signals(train_data)
-        generate_bull_bear_signals(valid_data)
+        generate_bull_bear_signals(train_data.copy())
+        generate_bull_bear_signals(valid_data.copy())
 
-        calculate_technical_indicators(train_data)
-        calculate_technical_indicators(valid_data)
+        # calculate_technical_indicators(train_data)
+        # calculate_technical_indicators(valid_data)
 
         train_data.to_csv(TRAIN_DATA_WITH_FEATURES_FILE)
         valid_data.to_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
