@@ -7,7 +7,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 
-def model_evaluation(train_data, valid_data, target_feature="signal"):
+def evaluate_models(train_data, valid_data, target_feature="signal"):
     y_train = train_data[target_feature]
     x_train = train_data.loc[:, train_data.columns != target_feature]
 
