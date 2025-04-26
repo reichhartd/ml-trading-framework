@@ -1,0 +1,32 @@
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+
+
+def plot_time_series(df, columns, title="", subplot_rows=1):
+    line_widths = [2] * len(columns)
+    size = [350, 1000]
+
+    fig = make_subplots(rows=subplot_rows, shared_xaxes=True)
+
+    for idx, column in enumerate(columns):
+        row_idx = min(idx + 1, subplot_rows)
+        fig.add_trace(
+            go.Scatter(
+                x=df.index,
+                y=df[column],
+                mode="lines",
+                name=column,
+                line=dict(width=line_widths[idx]),
+            ),
+            row=row_idx,
+            col=1,
+        )
+
+    fig.update_layout(
+        height=size[0],
+        width=size[1],
+        template="plotly_white",
+        title=title,
+        margin=dict(l=50, r=80, t=50, b=40),
+    )
+    fig.show()

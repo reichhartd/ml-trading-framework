@@ -4,11 +4,12 @@ This module provides functions to manage the complete dataset workflow.
 
 from .exploring_dataframe import exploring_dataframe
 from .download_dataset import download_dataset
-from .plot_missing_values import plot_missing_values
 from .process_dataset import process_dataset
 from . import data_logger as logger
 from .split_dataset import split_dataset
 import pandas as pd
+
+from ..visualization import plot_missing_values
 
 
 def prepare_dataset():

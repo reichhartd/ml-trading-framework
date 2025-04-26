@@ -8,8 +8,10 @@ from src.utils.logger import setup_logger
 data_logger = setup_logger("src.data")
 
 # Import and expose submodules
-from .dataset import prepare_dataset
-from .config import PROCESSED_PATH
+from .main import prepare_dataset
 
 # Export public API
-__all__ = ["prepare_dataset", "PROCESSED_PATH", "data_logger"]
+__all__ = [
+    "prepare_dataset",
+    "data_logger",
+]

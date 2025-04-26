@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-from . import data_logger as logger
+from . import visualization_logger as logger
 
 
 def plot_missing_values(df=None, figsize=(12, 8)):
