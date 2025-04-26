@@ -9,7 +9,7 @@ models_logger = setup_logger("src.models")
 
 
 # Import and expose submodules
-
+from .main import prepare_models
 
 # Export public API
-__all__ = ["models_logger"]
+__all__ = ["prepare_models", "models_logger"]
