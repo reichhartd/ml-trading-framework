@@ -10,7 +10,7 @@ from ..config import PLOT_DATA, PLOT_DATA_POINTS
 from ..visualization import plot_time_series
 
 
-def calculate_technical_indicators(df, plot_data=True):
+def calculate_technical_indicators(df):
     indicator_groups = {}
 
     df["SMA_10"] = calc_sma(df, 10)
