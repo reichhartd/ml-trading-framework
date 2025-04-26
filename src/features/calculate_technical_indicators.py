@@ -6,10 +6,11 @@ from .technical_indicators import (
     calc_rsi,
     calc_osc,
 )
+from ..config import PLOT_DATA, PLOT_DATA_POINTS
 from ..visualization import plot_time_series
 
 
-def calculate_technical_indicators(df, plot_data=True, plot_period=None):
+def calculate_technical_indicators(df, plot_data=True):
     indicator_groups = {}
 
     df["SMA_10"] = calc_sma(df, 10)
@@ -55,12 +56,11 @@ def calculate_technical_indicators(df, plot_data=True, plot_period=None):
         "STOCH_D_200",
     ]
 
-    if plot_data:
-        plot_period_data = df if plot_period is None else df.loc[plot_period]
-
+    if PLOT_DATA:
+        df_copy = df.tail(PLOT_DATA_POINTS).copy()
         for title, indicators in indicator_groups.items():
             plot_time_series(
-                plot_period_data[indicators],
+                df_copy[indicators],
                 indicators,
                 title=f"{title} (periods=10,30,200)",
             )
