@@ -8,7 +8,7 @@
         "test": "tests"
     },
     "scripts": {
-        "run": "poetry run python src/index.py",
+        "run": "poetry run python -m src",
         "virtual-env": "poetry env activate",
         "black": "poetry run black .",
         "prettier": "prettier --write . --ignore-path=.gitignore",
