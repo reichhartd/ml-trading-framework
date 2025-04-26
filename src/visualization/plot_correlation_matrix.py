@@ -10,7 +10,6 @@ def plot_correlation_matrix(
         raise ValueError(f"Target variable '{target}' not found in dataframe columns")
 
     corr = df.corr()[target].sort_values(ascending=False).to_frame()
-    corr = corr[corr.index != target]
 
     plt.figure()
     sns.heatmap(
