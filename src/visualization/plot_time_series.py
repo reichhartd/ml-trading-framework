@@ -3,22 +3,22 @@ import plotly.graph_objects as go
 
 
 def plot_time_series(df, columns, title="", subplot_rows=1):
-    lw_id = None
+    line_widths = [2] * len(columns)
     size = [350, 1000]
 
     fig = make_subplots(rows=subplot_rows, shared_xaxes=True)
-    ii = -1
-    for i in columns:
-        ii += 1
+
+    for idx, column in enumerate(columns):
+        row_idx = min(idx + 1, subplot_rows)
         fig.add_trace(
             go.Scatter(
                 x=df.index,
-                y=df[columns[ii]],
+                y=df[column],
                 mode="lines",
-                name=columns[ii],
-                line=dict(width=lw_id[ii]),
+                name=column,
+                line=dict(width=line_widths[idx]),
             ),
-            row=ii + 1,
+            row=row_idx,
             col=1,
         )
 
