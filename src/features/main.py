@@ -2,23 +2,42 @@ from . import feature_logger as logger
 from .calculate_technical_indicators import calculate_technical_indicators
 from .generate_bull_bear_signals import generate_bull_bear_signals
 from ..config import TRAIN_DATA_WITH_FEATURES_FILE, VALIDATION_DATA_WITH_FEATURES_FILE
+import os
+import pandas as pd
 
 
 def prepare_features(train_data, valid_data):
     logger.info("Starting feature preparation")
     try:
+        if os.path.exists(TRAIN_DATA_WITH_FEATURES_FILE) and os.path.exists(
+            VALIDATION_DATA_WITH_FEATURES_FILE
+        ):
+            logger.info("Feature files already exist, loading directly")
+
+            train_data_with_features = pd.read_csv(TRAIN_DATA_WITH_FEATURES_FILE)
+            train_data_with_features.set_index("Timestamp", inplace=True)
+
+            valid_data_with_features = pd.read_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
+            valid_data_with_features.set_index("Timestamp", inplace=True)
+
+            return train_data_with_features, valid_data_with_features
+
+        logger.info("Feature files don't exist, generating features")
+
         # Limit to the last 100,000 entries (most recent)
         train_data = train_data.tail(100000).copy()
-        # valid_data = valid_data.tail(100000).copy()
+        valid_data = valid_data.tail(100000).copy()
 
         generate_bull_bear_signals(train_data)
-        # generate_bull_bear_signals(valid_data)
+        generate_bull_bear_signals(valid_data)
 
         calculate_technical_indicators(train_data)
-        # calculate_technical_indicators(valid_data)
+        calculate_technical_indicators(valid_data)
 
         train_data.to_csv(TRAIN_DATA_WITH_FEATURES_FILE)
-        # valid_data.to_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
+        valid_data.to_csv(VALIDATION_DATA_WITH_FEATURES_FILE)
+
+        return train_data, valid_data
 
     except Exception as e:
         logger.error(f"Error preparing features: {e}", exc_info=True)

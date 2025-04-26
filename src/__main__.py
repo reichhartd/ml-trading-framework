@@ -5,6 +5,7 @@ Run this module with: python -m src
 """
 
 from src.features import prepare_features
+from src.models import prepare_models
 from src.utils.logger import setup_logger
 from src.data import prepare_dataset
 
@@ -15,7 +16,10 @@ if __name__ == "__main__":
         logger.info("Starting ML trading framework execution")
 
         train_data, valid_data, test_data = prepare_dataset()
-        prepare_features(train_data, valid_data)
+        train_data_with_features, valid_data_with_features = prepare_features(
+            train_data, valid_data
+        )
+        prepare_models(train_data_with_features, valid_data_with_features)
 
         logger.info("ML trading framework execution completed successfully")
     except Exception as e:
