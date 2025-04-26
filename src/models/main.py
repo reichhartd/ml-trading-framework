@@ -7,8 +7,12 @@ def prepare_models(
 ):
     logger.info("Starting model preparation")
     try:
-        evaluate_models(train_data_baseline, valid_data_baseline)
-        evaluate_models(train_data_technical, valid_data_technical)
+        evaluate_models(
+            train_data_baseline, valid_data_baseline, dataset_type="Baseline"
+        )
+        evaluate_models(
+            train_data_technical, valid_data_technical, dataset_type="Technical"
+        )
 
     except Exception as e:
         logger.error(f"Error preparing models: {e}", exc_info=True)
