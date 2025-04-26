@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 # Simple Moving Average
@@ -31,20 +32,37 @@ def calc_roc(df, period):
 
 # Relative Strength Index
 def calc_rsi(df, period):
-    delta = df["Close"].diff()
+    # Calculate price changes
+    price_changes = df.diff().dropna()
 
-    gains = delta.clip(lower=0)
-    losses = -delta.clip(upper=0)
+    # Initialize gains and losses series with zeros
+    gains = price_changes * 0
+    losses = gains.copy()
 
-    avg_gain = gains.ewm(alpha=1 / period, min_periods=period, adjust=False).mean()
-    avg_loss = losses.ewm(alpha=1 / period, min_periods=period, adjust=False).mean()
+    # Fill gains and losses based on price movement direction
+    gains[price_changes > 0] = price_changes[price_changes > 0]
+    losses[price_changes < 0] = -price_changes[price_changes < 0]
 
-    epsilon = 1e-10
-    rs = avg_gain / (avg_loss + epsilon)
+    # Set first usable value as average of initial period
+    gains[gains.index[period - 1]] = np.mean(
+        gains[:period]
+    )  # First value is average of initial gains
+    gains = gains.drop(gains.index[: (period - 1)])  # Remove initialization data
 
-    rsi = 100 - (100 / (1 + rs))
+    losses[losses.index[period - 1]] = np.mean(
+        losses[:period]
+    )  # First value is average of initial losses
+    losses = losses.drop(losses.index[: (period - 1)])  # Remove initialization data
 
-    return pd.Series(rsi, name=f"RSI_{period}")
+    # Calculate relative strength using exponential weighted moving average
+    relative_strength = (
+        gains.ewm(com=period - 1, adjust=False).mean()
+        / losses.ewm(com=period - 1, adjust=False).mean()
+    )
+
+    # Calculate and return RSI values
+    rsi_values = 100 - 100 / (1 + relative_strength)
+    return pd.Series(rsi_values, name=f"RSI_{period}")
 
 
 # Stochastic Oscillator
