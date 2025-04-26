@@ -7,8 +7,7 @@ from .technical_indicators import (
     calc_osc,
 )
 from ..config import PLOT_DATA, PLOT_DATA_POINTS
-from ..visualization import plot_time_series
-from ..visualization.plot_correlation_matrix import plot_correlation_matrix
+from ..visualization import plot_time_series, plot_correlation_matrix
 
 
 def calculate_technical_indicators(df):
