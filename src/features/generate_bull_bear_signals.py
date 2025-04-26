@@ -5,6 +5,7 @@ from ..visualization import plot_time_series
 from ..visualization.plot_correlation_matrix import plot_correlation_matrix
 
 
+# Baseline Feature
 def generate_bull_bear_signals(df):
     # The arbitrarily chosen window values of 10 and 60 for SMA_10 and SMA_60 respectively impact performance
     # significantly and should ideally be optimized through dedicated analysis.
@@ -24,3 +25,5 @@ def generate_bull_bear_signals(df):
             secondary_y=[False, False, True],
         )
         plot_correlation_matrix(df, "signal")
+
+    return df
