@@ -35,11 +35,13 @@ class Dataset:
         makedirs(Dataset.__PROCESSED_FOLDER, exist_ok=True)
 
     @staticmethod
-    def __read_csv(filepath, set_index=True):
+    def __read_csv(filepath):
         df = pd.read_csv(filepath, low_memory=False)
-        if set_index and "Timestamp" in df.columns:
+        if "Timestamp" in df.columns:
             df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="s")
             df.set_index("Timestamp", inplace=True)
+        if "datetime" in df.columns:
+            df.drop(columns=["datetime"], inplace=True)
         return df
 
     @staticmethod
@@ -127,8 +129,6 @@ class Dataset:
             plot_missing_data(df)
 
         logger.info("Splitting dataset")
-
-        df.drop(columns=["datetime"], inplace=True)
 
         # Chronological split with 60/20/20
         train_size = int(0.6 * len(df))
