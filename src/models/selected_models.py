@@ -14,16 +14,12 @@ from sklearn.linear_model import LogisticRegression
 
 
 selected_models = [
-    # Linear models
     ("LDA", LinearDiscriminantAnalysis()),
     ("LOG", LogisticRegression(max_iter=1000, random_state=42)),
     ("NB", GaussianNB()),
-    # Instance-based models
     ("KNN", KNeighborsClassifier(n_neighbors=5)),
     ("SVM", SVC(probability=True, random_state=42)),
-    # Tree-based models
     ("TREE", DecisionTreeClassifier(random_state=42)),
-    # Ensemble models
     ("RF", RandomForestClassifier(n_estimators=25, random_state=42)),
     ("ADA", AdaBoostClassifier(random_state=42)),
     ("GBM", GradientBoostingClassifier(n_estimators=25, random_state=42)),
