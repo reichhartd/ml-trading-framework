@@ -41,6 +41,11 @@ class Dataset:
 
     @staticmethod
     def __download_dataset():
+        """
+        Dataset
+        CSV file for the bitcoin price for the time period of 01.01.2012 10:01 until 26.04.2025 00:43.
+        :return:
+        """
         api = KaggleApi()
         api.authenticate()
         api.dataset_download_files(
@@ -48,8 +53,8 @@ class Dataset:
         )
 
         # Extract zip
-        zip_file = ZipFile(ZIP_FILE)
-        zip_file.extractall(path=RAW_PATH)
+        zip_file = ZipFile(Dataset.__ZIP_FILE)
+        zip_file.extractall(path=Dataset.__RAW_FOLDER)
 
         # Remove zip
-        remove(ZIP_FILE)
+        remove(Dataset.__ZIP_FILE)
