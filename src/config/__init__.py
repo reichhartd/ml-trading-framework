@@ -15,6 +15,7 @@ from .main import (
     VALIDATION_DATA_TECHNICAL_FILE,
     PLOT_DATA,
     PLOT_DATA_POINTS,
+    PROCESSED_FOLDER,
 )
 
 # Export public API
@@ -25,4 +26,5 @@ __all__ = [
     "VALIDATION_DATA_TECHNICAL_FILE",
     "PLOT_DATA",
     "PLOT_DATA_POINTS",
+    "PROCESSED_FOLDER",
 ]
