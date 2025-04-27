@@ -145,14 +145,12 @@ class Dataset:
 
         # Check time ranges
         logger.info(
-            f"Training set: {train_data.index.min().strftime('%Y-%m-%d %H:%M')} to {train_data.index.max().strftime('%Y-%m-%d %H:%M')}"
+            f"Training set: {train_data.index.min()} to {train_data.index.max()}"
         )
         logger.info(
-            f"Validation set: {valid_data.index.min().strftime('%Y-%m-%d %H:%M')} to {valid_data.index.max().strftime('%Y-%m-%d %H:%M')}"
+            f"Validation set: {valid_data.index.min()} to {valid_data.index.max()}"
         )
-        logger.info(
-            f"Test set: {test_data.index.min().strftime('%Y-%m-%d %H:%M')} to {test_data.index.max().strftime('%Y-%m-%d %H:%M')}"
-        )
+        logger.info(f"Test set: {test_data.index.min()} to {test_data.index.max()}")
 
         # Saving the split data records
         train_data.to_csv(Dataset.__TRAIN_DATA_FILE)
