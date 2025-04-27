@@ -18,7 +18,7 @@ selected_models = [
     ("LOG", LogisticRegression(max_iter=1000, random_state=42)),
     ("NB", GaussianNB()),
     ("KNN", KNeighborsClassifier(n_neighbors=5)),
-    # ("SVM", SVC(probability=True, random_state=42)),
+    ("SVM", SVC(probability=True, random_state=42)),
     ("TREE", DecisionTreeClassifier(random_state=42)),
     ("RF", RandomForestClassifier(n_estimators=25, random_state=42)),
     ("ADA", AdaBoostClassifier(random_state=42)),
