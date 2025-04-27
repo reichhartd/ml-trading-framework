@@ -5,9 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-def plot_train_validation_data(
-    train_data, valid_data, target_feature="signal", dataset_type=""
-):
+def plot_train_validation_data(train_data, valid_data, target_feature="signal", dataset_type=""):
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
