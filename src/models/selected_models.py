@@ -17,68 +17,66 @@ from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.neural_network import MLPClassifier
 
 
+RANDOM_STATE = 42
+
 selected_models = [
     # Linear Models
     ("LDA", LinearDiscriminantAnalysis()),
-    ("LOG", LogisticRegression(max_iter=1000, random_state=42)),
-    ("SGD", SGDClassifier(loss="log_loss", max_iter=1000, random_state=42)),
-    ("SVM", SVC(kernel="linear", probability=True, random_state=42, cache_size=500)),
+    ("LOG", LogisticRegression(max_iter=1000, random_state=RANDOM_STATE)),
+    ("SGD", SGDClassifier(loss="log_loss", max_iter=1000, random_state=RANDOM_STATE)),
+    (
+        "SVM",
+        SVC(kernel="rbf", probability=True, random_state=RANDOM_STATE, cache_size=500),
+    ),
     # Tree-based Models
-    ("TREE", DecisionTreeClassifier(random_state=42)),
-    ("RF", RandomForestClassifier(n_estimators=25, random_state=42)),
+    ("TREE", DecisionTreeClassifier(max_depth=6, random_state=RANDOM_STATE)),
+    (
+        "RF",
+        RandomForestClassifier(
+            n_estimators=100, max_depth=10, random_state=RANDOM_STATE
+        ),
+    ),
     (
         "BAG",
         BaggingClassifier(
-            base_estimator=DecisionTreeClassifier(random_state=42),
-            n_estimators=10,
-            random_state=42,
+            base_estimator=DecisionTreeClassifier(
+                max_depth=6, random_state=RANDOM_STATE
+            ),
+            n_estimators=50,
+            random_state=RANDOM_STATE,
         ),
     ),
     # Boosting Models
-    ("ADA", AdaBoostClassifier(random_state=42)),
-    ("GBM", GradientBoostingClassifier(n_estimators=25, random_state=42)),
-    ("XGB", XGBClassifier(n_estimators=25, eval_metric="logloss", random_state=42)),
-    ("CAT", CatBoostClassifier(silent=True, n_estimators=25, random_state=42)),
-    # Distance-based and Probability Models
-    ("NB", GaussianNB()),
-    ("KNN", KNeighborsClassifier(n_neighbors=5)),
-    # Neural Network Models
-    ("MLP", MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=500, random_state=42)),
-    # Ensemble Methods
+    ("ADA", AdaBoostClassifier(n_estimators=50, random_state=RANDOM_STATE)),
     (
-        "VOTING",
-        VotingClassifier(
-            estimators=[
-                ("rf", RandomForestClassifier(n_estimators=25, random_state=42)),
-                (
-                    "xgb",
-                    XGBClassifier(
-                        n_estimators=25, eval_metric="logloss", random_state=42
-                    ),
-                ),
-                (
-                    "cat",
-                    CatBoostClassifier(silent=True, n_estimators=25, random_state=42),
-                ),
-            ],
-            voting="soft",
+        "GBM",
+        GradientBoostingClassifier(
+            n_estimators=100, max_depth=5, random_state=RANDOM_STATE
         ),
     ),
     (
-        "STACKING",
-        StackingClassifier(
-            estimators=[
-                ("rf", RandomForestClassifier(n_estimators=15, random_state=42)),
-                (
-                    "xgb",
-                    XGBClassifier(
-                        n_estimators=15, eval_metric="logloss", random_state=42
-                    ),
-                ),
-                ("gbm", GradientBoostingClassifier(n_estimators=15, random_state=42)),
-            ],
-            final_estimator=LogisticRegression(random_state=42),
-            cv=3,
+        "XGB",
+        XGBClassifier(
+            n_estimators=100,
+            max_depth=6,
+            eval_metric="logloss",
+            random_state=RANDOM_STATE,
+        ),
+    ),
+    (
+        "CAT",
+        CatBoostClassifier(
+            silent=True, n_estimators=100, depth=6, random_state=RANDOM_STATE
+        ),
+    ),
+    # Distance-based and Probability Models
+    ("NB", GaussianNB()),
+    ("KNN", KNeighborsClassifier(n_neighbors=15, weights="distance")),
+    # Neural Network Models
+    (
+        "MLP",
+        MLPClassifier(
+            hidden_layer_sizes=(100, 50), max_iter=1000, random_state=RANDOM_STATE
         ),
     ),
 ]
