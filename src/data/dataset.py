@@ -106,6 +106,8 @@ class Dataset:
         the temporal nature of the information.
         :return:
         """
+        # Ensure folders exist
+        Dataset.__ensure_folders_exist()
 
         # Check if split files already exist
         if (
