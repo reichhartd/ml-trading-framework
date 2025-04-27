@@ -1,6 +1,8 @@
 import plotly.graph_objects as go
 import seaborn as sns
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 
 def plot_train_validation_data(
@@ -46,8 +48,49 @@ def plot_model_evaluation_results(results_df, dataset_type=""):
         lw=2,
         annot=True,
         fmt=".3f",
-        cmap="Blues",
+        cmap="viridis",
     )
-    plt.title(f"{dataset_type} Features - Accuracy Scores")
+    plt.title(f"{dataset_type} Features - Model Performance Metrics")
     plt.tight_layout()
+    plt.show()
+
+
+def plot_comparative_model_performance(results_dict, metric="accuracy"):
+    plt.figure()
+
+    # Extract model names and performance values
+    feature_sets = list(results_dict.keys())
+    all_models = set()
+    for df in results_dict.values():
+        all_models.update(df.index)
+
+    all_models = sorted(list(all_models))
+    data = []
+
+    for model in all_models:
+        model_data = []
+        for feature_set in feature_sets:
+            if model in results_dict[feature_set].index:
+                model_data.append(results_dict[feature_set].loc[model, metric])
+            else:
+                model_data.append(np.nan)
+        data.append(model_data)
+
+    # Create DataFrame for plotting
+    plot_df = pd.DataFrame(data, index=all_models, columns=feature_sets)
+
+    # Plot
+    ax = plot_df.plot(kind="bar")
+    plt.title(f"Comparative Model Performance ({metric})")
+    plt.xlabel("Models")
+    plt.ylabel(f"{metric.capitalize()} Score")
+    plt.xticks(rotation=45)
+    plt.legend(title="Feature Sets")
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+    plt.tight_layout()
+
+    # Add value labels on top of bars
+    for i, container in enumerate(ax.containers):
+        ax.bar_label(container, fmt="%.3f", padding=3)
+
     plt.show()

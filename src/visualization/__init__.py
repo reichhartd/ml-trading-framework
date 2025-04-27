@@ -15,6 +15,7 @@ from .plot_time_series import plot_time_series
 from .plot_model_results import (
     plot_train_validation_data,
     plot_model_evaluation_results,
+    plot_comparative_model_performance,
 )
 
 # Export public API
@@ -24,4 +25,5 @@ __all__ = [
     "plot_correlation_matrix",
     "plot_train_validation_data",
     "plot_model_evaluation_results",
+    "plot_comparative_model_performance",
 ]

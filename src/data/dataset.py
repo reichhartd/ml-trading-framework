@@ -35,10 +35,21 @@ class Dataset:
         makedirs(Dataset.__PROCESSED_FOLDER, exist_ok=True)
 
     @staticmethod
-    def __read_csv(filepath, set_index=True):
+    def __read_csv(filepath):
         df = pd.read_csv(filepath, low_memory=False)
-        if set_index:
+        if "Timestamp" in df.columns:
+            try:
+                df["Timestamp"] = pd.to_datetime(
+                    df["Timestamp"],
+                    unit="s",
+                )
+            except:
+                df["Timestamp"] = pd.to_datetime(
+                    df["Timestamp"],
+                )
             df.set_index("Timestamp", inplace=True)
+        if "datetime" in df.columns:
+            df.drop(columns=["datetime"], inplace=True)
         return df
 
     @staticmethod
@@ -77,23 +88,11 @@ class Dataset:
         # Ensure folders exist
         Dataset.__ensure_folders_exist()
 
-        # Function to convert Unix timestamp to formatted datetime string
-        def convert_timestamp(ts):
-            dt = datetime.fromtimestamp(float(ts), tz=UTC)
-            timezone_str = dt.strftime("%z")
-            formatted_timezone = f"{timezone_str[:3]}:{timezone_str[3:]}"
-            return dt.strftime("%Y-%m-%d %H:%M:%S") + formatted_timezone
-
         # Copy the original file to processed directory
         copy2(Dataset.__RAW_FILE, Dataset.__PROCESSED_FILE)
 
-        # Convert Timestamp column to datetime format
-        df = Dataset.__read_csv(Dataset.__PROCESSED_FILE, False)
-        df["datetime"] = df["Timestamp"].apply(convert_timestamp)
-        df.set_index("Timestamp", inplace=True)
-
-        # Save the processed data
-        df.to_csv(Dataset.__PROCESSED_FILE, index=False)
+        # Load with datetime conversion
+        df = Dataset.__read_csv(Dataset.__PROCESSED_FILE)
 
         return df
 
@@ -138,8 +137,6 @@ class Dataset:
             plot_missing_data(df)
 
         logger.info("Splitting dataset")
-
-        df.drop(columns=["datetime"], inplace=True)
 
         # Chronological split with 60/20/20
         train_size = int(0.6 * len(df))
