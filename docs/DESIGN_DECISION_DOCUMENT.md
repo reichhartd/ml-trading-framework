@@ -55,10 +55,10 @@ Initial exploratory analysis revealed:
 
 The target variable ("signal") is derived using a moving average crossover strategy:
 
-- When the Short-Term Moving Average (SMA_10) crosses above the Long-Term Moving Average (SMA_60), a buy signal (1) is generated
+- When the Short-Term Moving Average (10-minute SMA) crosses above the Long-Term Moving Average (60-minute SMA), a buy signal (1) is generated
 - When the Short-Term Moving Average falls below the Long-Term Moving Average, a sell signal (0) is generated
 
-This approach was chosen as it's a well-established technique in technical analysis for identifying trend reversals.
+This approach was chosen as it's a well-established technique in technical analysis for identifying trend reversals. Since we're using 1-minute interval data, these windows represent 10-minute and 60-minute time periods.
 
 ### Technical Indicators Selection
 

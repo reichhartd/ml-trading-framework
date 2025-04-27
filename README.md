@@ -63,7 +63,7 @@ poetry run python -m src
 
 - **Dataset Class**: Handles downloading, processing, and splitting Bitcoin price data
 - **Technical Indicators**: Calculates various technical indicators used as features
-- **Bull/Bear Signal Generation**: Creates target variable based on moving average crossovers
+- **Bull/Bear Signal Generation**: Creates target variable based on 10-minute and 60-minute moving average crossovers
 - **Model Evaluation**: Trains and evaluates multiple classification models
 
 ## Results and Visualization
