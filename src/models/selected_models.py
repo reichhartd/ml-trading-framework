@@ -9,6 +9,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
+from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 
 
@@ -17,6 +18,7 @@ selected_models = [
     ("LOG", LogisticRegression(max_iter=1000, random_state=42)),
     ("NB", GaussianNB()),
     ("KNN", KNeighborsClassifier(n_neighbors=5)),
+    ("SVM", SVC(kernel="linear", probability=False, random_state=42, cache_size=500)),
     ("TREE", DecisionTreeClassifier(random_state=42)),
     ("RF", RandomForestClassifier(n_estimators=25, random_state=42)),
     ("ADA", AdaBoostClassifier(random_state=42)),
