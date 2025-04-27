@@ -97,3 +97,70 @@ class Dataset:
         df.to_csv(Dataset.__PROCESSED_FILE, index=False)
 
         return df
+
+    @staticmethod
+    def __split_dataset(df):
+        """
+        Data Splitting Strategy
+        For our time series, we'll split the dataset into three distinct segments:
+        1. **Training Set (60%)**: The earliest portion of our chronological data used to train the model and establish
+           patterns.
+        2. **Validation Set (20%)**: The middle segment used to tune hyperparameters and prevent overfitting during the
+           development phase.
+        3. **Test Set (20%)**: The most recent data, kept completely separate until final evaluation to simulate real-world
+           performance.
+        This chronological splitting approach is crucial for financial time series data to prevent data leakage and maintain
+        the temporal nature of the information.
+        :param df:
+        :return:
+        """
+
+        # Check if split files already exist
+        if (
+            path.exists(Dataset.__TRAIN_DATA_FILE)
+            and path.exists(Dataset.__VALIDATION_DATA_FILE)
+            and path.exists(Dataset.__TEST_DATA_FILE)
+        ):
+            logger.info("Split datasets already exist, loading from files")
+
+            train_data = pd.read_csv(Dataset.__TRAIN_DATA_FILE)
+            train_data.set_index("Timestamp", inplace=True)
+
+            valid_data = pd.read_csv(Dataset.__VALIDATION_DATA_FILE)
+            valid_data.set_index("Timestamp", inplace=True)
+
+            test_data = pd.read_csv(Dataset.__TEST_DATA_FILE)
+            test_data.set_index("Timestamp", inplace=True)
+
+            return train_data, valid_data, test_data
+
+        logger.info("Splitting dataset")
+
+        # Chronological split with 60/20/20
+        train_size = int(0.6 * len(df))
+        valid_size = int(0.2 * len(df))
+
+        # Split in chronological order
+        train_data = df.iloc[:train_size]
+        valid_data = df.iloc[train_size : train_size + valid_size]
+        test_data = df.iloc[train_size + valid_size :]
+
+        logger.info(f"Training set: {len(train_data)} entries")
+        logger.info(f"Validation set: {len(valid_data)} entries")
+        logger.info(f"Test set: {len(test_data)} entries")
+
+        # Check time ranges
+        logger.info(
+            f"Training set: {train_data.index.min()} to {train_data.index.max()}"
+        )
+        logger.info(
+            f"Validation set: {valid_data.index.min()} to {valid_data.index.max()}"
+        )
+        logger.info(f"Test set: {test_data.index.min()} to {test_data.index.max()}")
+
+        # Saving the split data records
+        train_data.to_csv(Dataset.__TRAIN_DATA_FILE)
+        valid_data.to_csv(Dataset.__VALIDATION_DATA_FILE)
+        test_data.to_csv(Dataset.__TEST_DATA_FILE)
+
+        return train_data, valid_data, test_data
