@@ -41,7 +41,7 @@ def calc_mom(df, period):
     :param period:
     :return:
     """
-    return pd.Series(df["Close"].diff(period), name=f"Momentum_{period}")
+    return pd.Series(df["Close"].diff(period), name=f"MOM_{period}")
 
 
 def calc_roc(df, period):
