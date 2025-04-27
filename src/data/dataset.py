@@ -45,9 +45,10 @@ class Dataset:
         makedirs(Dataset.__PROCESSED_FOLDER, exist_ok=True)
 
     @staticmethod
-    def __read_csv(filepath):
+    def __read_csv(filepath, set_index=True):
         df = pd.read_csv(filepath, low_memory=False)
-        df.set_index("Timestamp", inplace=True)
+        if set_index:
+            df.set_index("Timestamp", inplace=True)
         return df
 
     @staticmethod
