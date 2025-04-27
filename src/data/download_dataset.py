@@ -7,6 +7,12 @@ from ..config import ZIP_PATH, RAW_PATH, ZIP_FILE, RAW_FILE
 
 
 def download_dataset():
+    """
+    Dataset
+    CSV file for the bitcoin price for the time period of 01.01.2012 10:01 until 13.04.2025 02:13.
+    :return:
+    """
+
     # Validate folders exist
     os.makedirs(ZIP_PATH, exist_ok=True)
     os.makedirs(RAW_PATH, exist_ok=True)
