@@ -77,8 +77,7 @@ class Dataset:
     def __process_raw_dataset():
         # Skip if processed file already exists
         if path.exists(Dataset.__PROCESSED_FILE):
-            df = pd.read_csv(Dataset.__PROCESSED_FILE, low_memory=False)
-            return df
+            return Dataset.__read_csv(Dataset.__PROCESSED_FILE, False)
 
         # Check if raw file exists
         if not path.exists(Dataset.__RAW_FILE):
@@ -97,7 +96,7 @@ class Dataset:
         copy2(Dataset.__RAW_FILE, Dataset.__PROCESSED_FILE)
 
         # Convert Timestamp column to datetime format
-        df = pd.read_csv(Dataset.__PROCESSED_FILE, low_memory=False)
+        df = Dataset.__read_csv(Dataset.__PROCESSED_FILE, False)
         df["datetime"] = df["Timestamp"].apply(convert_timestamp)
 
         # Save the processed data
