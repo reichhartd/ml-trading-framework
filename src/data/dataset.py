@@ -38,7 +38,15 @@ class Dataset:
     def __read_csv(filepath):
         df = pd.read_csv(filepath, low_memory=False)
         if "Timestamp" in df.columns:
-            df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="s")
+            try:
+                df["Timestamp"] = pd.to_datetime(
+                    df["Timestamp"],
+                    unit="s",
+                )
+            except:
+                df["Timestamp"] = pd.to_datetime(
+                    df["Timestamp"],
+                )
             df.set_index("Timestamp", inplace=True)
         if "datetime" in df.columns:
             df.drop(columns=["datetime"], inplace=True)
