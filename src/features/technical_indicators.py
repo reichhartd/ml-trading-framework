@@ -5,7 +5,8 @@ import numpy as np
 def calc_sma(df, period):
     """
     Simple Moving Average (SMA)
-    This indicator reveals price trends by smoothing out market fluctuations, effectively filtering out short-term noise from price data.
+    This indicator reveals price trends by smoothing out market fluctuations, effectively filtering out short-term noise
+    from price data.
     :param df:
     :param period:
     :return:
@@ -19,7 +20,8 @@ def calc_sma(df, period):
 def calc_ema(df, period):
     """
     Exponential Moving Average (EMA)
-    This indicator reveals price trends by smoothing out market fluctuations, effectively filtering out short-term noise from price data.
+    This indicator reveals price trends by smoothing out market fluctuations, effectively filtering out short-term noise
+    from price data.
     :param df:
     :param period:
     :return:
@@ -33,7 +35,8 @@ def calc_ema(df, period):
 def calc_mom(df, period):
     """
     Momentum (MOM)
-    This metric quantifies the acceleration of a security's price or volume, essentially measuring how rapidly prices are changing in a given direction.
+    This metric quantifies the acceleration of a security's price or volume, essentially measuring how rapidly prices
+    are changing in a given direction.
     :param df:
     :param period:
     :return:
@@ -44,7 +47,9 @@ def calc_mom(df, period):
 def calc_roc(df, period):
     """
     Rate Of Change (ROC)
-    This momentum oscillator calculates the percentage difference between current price and the price n periods ago. Assets displaying **elevated ROC values** typically signal overbought conditions, while **depressed ROC readings** often indicate oversold market states.
+    This momentum oscillator calculates the percentage difference between current price and the price n periods ago.
+    Assets displaying **elevated ROC values** typically signal overbought conditions, while **depressed ROC readings**
+    often indicate oversold market states.
     :param df:
     :param period:
     :return:
@@ -58,7 +63,9 @@ def calc_roc(df, period):
 def calc_rsi(df, period):
     """
     Relative Strength Index (RSI)
-    A momentum measurement that evaluates the speed and magnitude of recent price movements to identify potential overbought or oversold conditions. It operates on a scale of 0-100, with **readings above 70 suggesting an overbought asset** and **readings below 30 indicating an undervalued, oversold condition**.
+    A momentum measurement that evaluates the speed and magnitude of recent price movements to identify potential
+    overbought or oversold conditions. It operates on a scale of 0-100, with **readings above 70 suggesting an
+    overbought asset** and **readings below 30 indicating an undervalued, oversold condition**.
     :param df:
     :param period:
     :return:
@@ -100,7 +107,8 @@ def calc_rsi(df, period):
 def calc_osc(df, period, k_or_d="k"):
     """
     Stochastic Oscillator
-    This momentum tool compares a security's closing price to its price range over a specific timeframe. The %K line represents the faster signal, while %D serves as the slower, more smoothed indicator.
+    This momentum tool compares a security's closing price to its price range over a specific timeframe. The %K line
+    represents the faster signal, while %D serves as the slower, more smoothed indicator.
     :param df:
     :param period:
     :param k_or_d:
