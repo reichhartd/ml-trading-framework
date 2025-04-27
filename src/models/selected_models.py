@@ -4,8 +4,6 @@ from sklearn.ensemble import (
     GradientBoostingClassifier,
     RandomForestClassifier,
     AdaBoostClassifier,
-    VotingClassifier,
-    StackingClassifier,
     BaggingClassifier,
 )
 from sklearn.naive_bayes import GaussianNB
@@ -39,9 +37,7 @@ selected_models = [
     (
         "BAG",
         BaggingClassifier(
-            base_estimator=DecisionTreeClassifier(
-                max_depth=6, random_state=RANDOM_STATE
-            ),
+            estimator=DecisionTreeClassifier(max_depth=6, random_state=RANDOM_STATE),
             n_estimators=50,
             random_state=RANDOM_STATE,
         ),
