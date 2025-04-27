@@ -12,6 +12,16 @@ visualization_logger = setup_logger("src.visualization")
 from .plot_correlation_matrix import plot_correlation_matrix
 from .plot_missing_data import plot_missing_data
 from .plot_time_series import plot_time_series
+from .plot_model_results import (
+    plot_train_validation_data,
+    plot_model_evaluation_results,
+)
 
 # Export public API
-__all__ = ["plot_missing_data", "plot_time_series", "plot_correlation_matrix"]
+__all__ = [
+    "plot_missing_data",
+    "plot_time_series",
+    "plot_correlation_matrix",
+    "plot_train_validation_data",
+    "plot_model_evaluation_results",
+]
