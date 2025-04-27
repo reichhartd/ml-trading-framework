@@ -75,10 +75,6 @@ class Dataset:
 
     @staticmethod
     def __process_raw_dataset():
-        # Skip if processed file already exists
-        if path.exists(Dataset.__PROCESSED_FILE):
-            return Dataset.__read_csv(Dataset.__PROCESSED_FILE, False)
-
         # Check if raw file exists
         if not path.exists(Dataset.__RAW_FILE):
             Dataset.__download_dataset()
@@ -132,6 +128,10 @@ class Dataset:
             valid_data = Dataset.__read_csv(Dataset.__VALIDATION_DATA_FILE)
             test_data = Dataset.__read_csv(Dataset.__TEST_DATA_FILE)
             return train_data, valid_data, test_data
+
+        # Check if raw file exists
+        if not path.exists(Dataset.__PROCESSED_FILE):
+            Dataset.__process_raw_dataset()
 
         logger.info("Splitting dataset")
 
