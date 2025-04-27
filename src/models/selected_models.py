@@ -30,9 +30,7 @@ selected_models = [
     ("TREE", DecisionTreeClassifier(max_depth=6, random_state=RANDOM_STATE)),
     (
         "RF",
-        RandomForestClassifier(
-            n_estimators=100, max_depth=10, random_state=RANDOM_STATE
-        ),
+        RandomForestClassifier(n_estimators=100, max_depth=10, random_state=RANDOM_STATE),
     ),
     (
         "BAG",
@@ -46,9 +44,7 @@ selected_models = [
     ("ADA", AdaBoostClassifier(n_estimators=50, random_state=RANDOM_STATE)),
     (
         "GBM",
-        GradientBoostingClassifier(
-            n_estimators=100, max_depth=5, random_state=RANDOM_STATE
-        ),
+        GradientBoostingClassifier(n_estimators=100, max_depth=5, random_state=RANDOM_STATE),
     ),
     (
         "XGB",
@@ -61,9 +57,7 @@ selected_models = [
     ),
     (
         "CAT",
-        CatBoostClassifier(
-            silent=True, n_estimators=100, depth=6, random_state=RANDOM_STATE
-        ),
+        CatBoostClassifier(silent=True, n_estimators=100, depth=6, random_state=RANDOM_STATE),
     ),
     # Distance-based and Probability Models
     ("NB", GaussianNB()),
@@ -71,8 +65,6 @@ selected_models = [
     # Neural Network Models
     (
         "MLP",
-        MLPClassifier(
-            hidden_layer_sizes=(100, 50), max_iter=1000, random_state=RANDOM_STATE
-        ),
+        MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=RANDOM_STATE),
     ),
 ]
