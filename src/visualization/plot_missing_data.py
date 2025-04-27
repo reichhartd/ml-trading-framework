@@ -4,9 +4,7 @@ from . import visualization_logger as logger
 
 
 def plot_missing_data(df):
-    missing_percentage = (df.isnull().sum() / len(df) * 100).sort_values(
-        ascending=False
-    )
+    missing_percentage = (df.isnull().sum() / len(df) * 100).sort_values(ascending=False)
 
     missing_percentage = missing_percentage[missing_percentage > 0]
     if len(missing_percentage) == 0:
