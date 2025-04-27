@@ -1,11 +1,9 @@
 from sklearn.metrics import accuracy_score
 import pandas as pd
-from src.models.selected_models import selected_models
+from . import selected_models
 import time
-import plotly.graph_objects as go
-import seaborn as sns
-import matplotlib.pyplot as plt
 from . import models_logger as logger
+from ..visualization import plot_train_validation_data, plot_model_evaluation_results
 
 
 def evaluate_models(train_data, valid_data, target_feature="signal", dataset_type=""):
@@ -29,33 +27,8 @@ def evaluate_models(train_data, valid_data, target_feature="signal", dataset_typ
     logger.info(f"Training data shape after removing NaN values: {x_train.shape}")
     logger.info(f"Validation data shape after removing NaN values: {x_valid.shape}")
 
-    # Visualize
-    fig = go.Figure()
-    fig.add_trace(
-        go.Scatter(
-            x=train_data.index,
-            y=train_data[target_feature],
-            mode="lines",
-            name="Training Data",
-            line={"width": 0.25},
-        )
-    )
-    fig.add_trace(
-        go.Scatter(
-            x=valid_data.index,
-            y=valid_data[target_feature],
-            mode="lines",
-            name="Validation Data",
-            line={"width": 0.25},
-        )
-    )
-    fig.update_layout(
-        autosize=True,
-        template="plotly_white",
-        title=f"{dataset_type} Features - Training/Validation Data Visualization",
-        margin=dict(l=50, r=80, t=50, b=40),
-    )
-    fig.show(config={"responsive": True})
+    # Visualize the train/validation data
+    plot_train_validation_data(train_data, valid_data, target_feature, dataset_type)
 
     # Initialize result lists
     model_names = []
@@ -100,22 +73,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal", dataset_typ
         index=model_names,
     )
 
-    # Visualize results
-    sns.set(style="whitegrid")
-    plt.figure()
-    sns.heatmap(
-        results_df,
-        vmin=0.5,
-        vmax=1.0,
-        center=0.75,
-        square=False,
-        lw=2,
-        annot=True,
-        fmt=".3f",
-        cmap="Blues",
-    )
-    plt.title(f"{dataset_type} Features - Accuracy Scores")
-    plt.tight_layout()
-    plt.show()
+    # Visualize model evaluation results
+    plot_model_evaluation_results(results_df, dataset_type)
 
     return results_df
