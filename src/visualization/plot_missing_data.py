@@ -14,14 +14,14 @@ def plot_missing_data(df):
         return
 
     plt.figure()
-    color_palette = sns.color_palette("plasma", len(missing_percentage))
 
     axes = plt.axes()
     sns.barplot(
         x=missing_percentage,
         y=missing_percentage.index,
         edgecolor="black",
-        palette=color_palette,
+        hue=missing_percentage.index,
+        legend=False,
     )
 
     for spine_position in ["top", "right", "bottom", "left"]:
