@@ -1,6 +1,6 @@
 from sklearn.metrics import accuracy_score
 import pandas as pd
-from . import selected_models
+from .selected_models import selected_models
 import time
 from . import models_logger as logger
 from ..visualization import plot_train_validation_data, plot_model_evaluation_results

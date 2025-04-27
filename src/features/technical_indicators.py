@@ -83,15 +83,13 @@ def calc_rsi(df, period):
     losses[price_changes < 0] = -price_changes[price_changes < 0]
 
     # Set first usable value as average of initial period
-    gains[gains.index[period - 1]] = np.mean(
-        gains[:period]
-    )  # First value is average of initial gains
-    gains = gains.drop(gains.index[: (period - 1)])  # Remove initialization data
+    gains_start = gains.iloc[:period].mean()
+    gains = gains.iloc[period - 1 :]
+    gains.iloc[0] = gains_start
 
-    losses[losses.index[period - 1]] = np.mean(
-        losses[:period]
-    )  # First value is average of initial losses
-    losses = losses.drop(losses.index[: (period - 1)])  # Remove initialization data
+    losses_start = losses.iloc[:period].mean()
+    losses = losses.iloc[period - 1 :]
+    losses.iloc[0] = losses_start
 
     # Calculate relative strength using exponential weighted moving average
     relative_strength = (
