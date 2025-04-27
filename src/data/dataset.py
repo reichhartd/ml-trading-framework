@@ -71,6 +71,9 @@ class Dataset:
 
         logger.info("Processing dataset")
 
+        # Ensure folders exist
+        Dataset.__ensure_folders_exist()
+
         # Function to convert Unix timestamp to formatted datetime string
         def convert_timestamp(ts):
             dt = datetime.fromtimestamp(float(ts), tz=UTC)
