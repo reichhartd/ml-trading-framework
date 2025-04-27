@@ -9,15 +9,6 @@ data_logger = setup_logger("src.config")
 
 # Import and expose submodules
 from .main import (
-    ZIP_PATH,
-    RAW_PATH,
-    ZIP_FILE,
-    RAW_FILE,
-    PROCESSED_FILE,
-    PROCESSED_PATH,
-    TRAIN_DATA_FILE,
-    VALIDATION_DATA_FILE,
-    TEST_DATA_FILE,
     TRAIN_DATA_BASELINE_FILE,
     TRAIN_DATA_TECHNICAL_FILE,
     VALIDATION_DATA_BASELINE_FILE,
@@ -28,15 +19,6 @@ from .main import (
 
 # Export public API
 __all__ = [
-    "ZIP_PATH",
-    "RAW_PATH",
-    "ZIP_FILE",
-    "RAW_FILE",
-    "PROCESSED_FILE",
-    "PROCESSED_PATH",
-    "TRAIN_DATA_FILE",
-    "VALIDATION_DATA_FILE",
-    "TEST_DATA_FILE",
     "TRAIN_DATA_BASELINE_FILE",
     "TRAIN_DATA_TECHNICAL_FILE",
     "VALIDATION_DATA_BASELINE_FILE",
