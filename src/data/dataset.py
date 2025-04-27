@@ -7,6 +7,10 @@ from pytz import UTC
 from datetime import datetime
 from shutil import copy2
 
+from .exploring_dataframe import exploring_dataframe
+from ..config import PLOT_DATA
+from ..visualization import plot_missing_data
+
 
 class Dataset:
     # Folder
@@ -94,6 +98,7 @@ class Dataset:
         # Convert Timestamp column to datetime format
         df = Dataset.__read_csv(Dataset.__PROCESSED_FILE, False)
         df["datetime"] = df["Timestamp"].apply(convert_timestamp)
+        df.set_index("Timestamp", inplace=True)
 
         # Save the processed data
         df.to_csv(Dataset.__PROCESSED_FILE, index=False)
@@ -101,7 +106,7 @@ class Dataset:
         return df
 
     @staticmethod
-    def __split_dataset(df):
+    def split_dataset():
         """
         Data Splitting Strategy
         For our time series, we'll split the dataset into three distinct segments:
@@ -113,7 +118,6 @@ class Dataset:
            performance.
         This chronological splitting approach is crucial for financial time series data to prevent data leakage and maintain
         the temporal nature of the information.
-        :param df:
         :return:
         """
 
@@ -129,11 +133,19 @@ class Dataset:
             test_data = Dataset.__read_csv(Dataset.__TEST_DATA_FILE)
             return train_data, valid_data, test_data
 
-        # Check if raw file exists
-        if not path.exists(Dataset.__PROCESSED_FILE):
-            Dataset.__process_raw_dataset()
+        # Check if processed file exists
+        if path.exists(Dataset.__PROCESSED_FILE):
+            df = Dataset.__read_csv(Dataset.__PROCESSED_FILE)
+        else:
+            df = Dataset.__process_raw_dataset()
+
+        if PLOT_DATA:
+            exploring_dataframe(df)
+            plot_missing_data(df)
 
         logger.info("Splitting dataset")
+
+        df.drop(columns=["datetime"], inplace=True)
 
         # Chronological split with 60/20/20
         train_size = int(0.6 * len(df))
