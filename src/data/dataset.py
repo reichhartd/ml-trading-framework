@@ -45,6 +45,12 @@ class Dataset:
         makedirs(Dataset.__PROCESSED_FOLDER, exist_ok=True)
 
     @staticmethod
+    def __read_csv(filepath):
+        df = pd.read_csv(filepath, low_memory=False)
+        df.set_index("Timestamp", inplace=True)
+        return df
+
+    @staticmethod
     def __download_dataset():
         """
         Dataset
@@ -122,16 +128,9 @@ class Dataset:
             and path.exists(Dataset.__TEST_DATA_FILE)
         ):
             logger.info("Split datasets already exist, loading from files")
-
-            train_data = pd.read_csv(Dataset.__TRAIN_DATA_FILE)
-            train_data.set_index("Timestamp", inplace=True)
-
-            valid_data = pd.read_csv(Dataset.__VALIDATION_DATA_FILE)
-            valid_data.set_index("Timestamp", inplace=True)
-
-            test_data = pd.read_csv(Dataset.__TEST_DATA_FILE)
-            test_data.set_index("Timestamp", inplace=True)
-
+            train_data = Dataset.__read_csv(Dataset.__TRAIN_DATA_FILE)
+            valid_data = Dataset.__read_csv(Dataset.__VALIDATION_DATA_FILE)
+            test_data = Dataset.__read_csv(Dataset.__TEST_DATA_FILE)
             return train_data, valid_data, test_data
 
         logger.info("Splitting dataset")
