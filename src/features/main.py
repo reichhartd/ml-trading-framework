@@ -13,6 +13,18 @@ from ..config import (
 
 
 def prepare_features(train_data, valid_data):
+    """
+    Baseline Features
+    The baseline features include: `Timestamp`, `Open`, `High`, `Low`, `Close`, `Volume`.
+    - Working with the full index dataset (7.0M entries) can lead to excessive training times.
+    - We'll restrict our dataset to the most recent `100,000` data points, which are likely more relevant for future
+      predictions.
+    - Note that a `training period` of only two months may not capture all relevant trends, despite containing
+      substantial data.
+    :param train_data:
+    :param valid_data:
+    :return:
+    """
     logger.info("Starting feature preparation")
     try:
         if (
