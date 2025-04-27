@@ -92,10 +92,7 @@ def calc_rsi(df, period):
     losses.iloc[0] = losses_start
 
     # Calculate relative strength using exponential weighted moving average
-    relative_strength = (
-        gains.ewm(com=period - 1, adjust=False).mean()
-        / losses.ewm(com=period - 1, adjust=False).mean()
-    )
+    relative_strength = gains.ewm(com=period - 1, adjust=False).mean() / losses.ewm(com=period - 1, adjust=False).mean()
 
     # Calculate and return RSI values
     rsi_values = 100 - 100 / (1 + relative_strength)
