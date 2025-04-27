@@ -22,10 +22,6 @@ selected_models = [
     ("LDA", LinearDiscriminantAnalysis()),
     ("LOG", LogisticRegression(max_iter=1000, random_state=RANDOM_STATE)),
     ("SGD", SGDClassifier(loss="log_loss", max_iter=1000, random_state=RANDOM_STATE)),
-    (
-        "SVM",
-        SVC(kernel="rbf", probability=True, random_state=RANDOM_STATE, cache_size=500),
-    ),
     # Tree-based Models
     ("TREE", DecisionTreeClassifier(max_depth=6, random_state=RANDOM_STATE)),
     ("RF", RandomForestClassifier(n_estimators=100, max_depth=10, random_state=RANDOM_STATE)),
