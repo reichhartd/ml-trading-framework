@@ -20,7 +20,7 @@ RANDOM_STATE = 42
 selected_models = [
     # Linear Models
     ("LDA", LinearDiscriminantAnalysis()),
-    ("LOG", LogisticRegression(max_iter=1000, random_state=RANDOM_STATE)),
+    ("LOG", LogisticRegression(max_iter=5000, random_state=RANDOM_STATE)),
     ("SGD", SGDClassifier(loss="log_loss", max_iter=1000, random_state=RANDOM_STATE)),
     ("LinearSVM", LinearSVC(dual="auto", random_state=RANDOM_STATE, max_iter=2000)),
     # Tree-based Models
