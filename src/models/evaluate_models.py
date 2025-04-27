@@ -17,10 +17,6 @@ def evaluate_models(train_data, valid_data, target_feature="signal", dataset_typ
     y_valid = valid_data[target_feature]
     x_valid = valid_data.loc[:, valid_data.columns != target_feature]
 
-    # Complete dataset for full evaluation
-    x_complete = pd.concat([x_train, x_valid], axis=0)
-    y_complete = pd.concat([y_train, y_valid], axis=0)
-
     logger.info(f"Dataset type: {dataset_type}")
     logger.info(f"Features used: {x_train.columns}")
     logger.info(f"Target variable: {target_feature}")
@@ -34,7 +30,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal", dataset_typ
     model_names = []
     train_results = []
     valid_results = []
-    complete_results = []
+    train_times = []
 
     # Evaluate models
     for name, model in selected_models:
@@ -50,25 +46,17 @@ def evaluate_models(train_data, valid_data, target_feature="signal", dataset_typ
         valid_result = accuracy_score(trained_model.predict(x_valid), y_valid)
         valid_results.append(valid_result)
         train_valid_time = time.time() - train_start_time
-
-        # Evaluate on complete dataset
-        complete_start_time = time.time()
-        complete_model = model.fit(x_complete, y_complete)
-        complete_result = accuracy_score(complete_model.predict(x_complete), y_complete)
-        complete_results.append(complete_result)
-        complete_time = time.time() - complete_start_time
+        train_times.append(train_valid_time)
 
         # Output results
-        logger.info(
-            f"{name} : {train_result:.3f} & {valid_result:.3f} -> {train_valid_time:.2f}s | {complete_result:.3f} -> {complete_time:.2f}s"
-        )
+        logger.info(f"{name} : Train: {train_result:.3f}, Valid: {valid_result:.3f} -> {train_valid_time:.2f}s")
 
     # Summarize results in DataFrame
     results_df = pd.DataFrame(
         {
             "Training": train_results,
             "Validation": valid_results,
-            "Complete": complete_results,
+            "Time (s)": train_times,
         },
         index=model_names,
     )
