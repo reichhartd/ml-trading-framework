@@ -66,9 +66,7 @@ class Dataset:
 
         api = KaggleApi()
         api.authenticate()
-        api.dataset_download_files(
-            "mczielinski/bitcoin-historical-data", path=Dataset.__ZIP_FOLDER
-        )
+        api.dataset_download_files("mczielinski/bitcoin-historical-data", path=Dataset.__ZIP_FOLDER)
 
         # Extract zip
         zip_file = ZipFile(Dataset.__ZIP_FILE)
@@ -152,12 +150,8 @@ class Dataset:
         logger.info(f"Test set: {len(test_data)} entries")
 
         # Check time ranges
-        logger.info(
-            f"Training set: {train_data.index.min()} to {train_data.index.max()}"
-        )
-        logger.info(
-            f"Validation set: {valid_data.index.min()} to {valid_data.index.max()}"
-        )
+        logger.info(f"Training set: {train_data.index.min()} to {train_data.index.max()}")
+        logger.info(f"Validation set: {valid_data.index.min()} to {valid_data.index.max()}")
         logger.info(f"Test set: {test_data.index.min()} to {test_data.index.max()}")
 
         # Saving the split data records
