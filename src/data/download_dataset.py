@@ -9,7 +9,7 @@ from ..config import ZIP_PATH, RAW_PATH, ZIP_FILE, RAW_FILE
 def download_dataset():
     """
     Dataset
-    CSV file for the bitcoin price for the time period of 01.01.2012 10:01 until 13.04.2025 02:13.
+    CSV file for the bitcoin price for the time period of 01.01.2012 10:01 until 26.04.2025 00:43.
     :return:
     """
 
