@@ -48,7 +48,7 @@ def plot_model_evaluation_results(results_df, dataset_type=""):
         lw=2,
         annot=True,
         fmt=".3f",
-        cmap="viridis",
+        cmap="RdYlGn",
     )
     plt.title(f"{dataset_type} Features - Model Performance Metrics")
     plt.tight_layout()
