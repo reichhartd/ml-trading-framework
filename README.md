@@ -31,15 +31,26 @@ This framework is designed to predict trading signals (bull/bear market indicato
 1. **Problem Formulation**: Binary classification predicting bull/bear market signals for Bitcoin trading using technical indicators
 2. **Dataset Preparation**: Chronological time series splitting (60/20/20 for train/validation/test)
 3. **Feature Engineering**: Technical indicators (SMA, EMA, RSI, ROC, Momentum, Stochastic Oscillator)
-4. **Model Selection**: Comparison of 8 classification models
-    - Linear Discriminant Analysis (LDA)
-    - K-Nearest Neighbors (KNN)
-    - Decision Tree (TREE)
-    - Gaussian Naive Bayes (NB)
-    - Gradient Boosting Machine (GBM)
-    - XGBoost (XGB)
-    - CatBoost (CAT)
-    - Random Forest (RF)
+4. **Model Selection**: Comparison of 14 classification models
+    - Linear Models:
+        - Linear Discriminant Analysis (LDA)
+        - Logistic Regression (LOG)
+        - Stochastic Gradient Descent (SGD)
+        - Linear Support Vector Machines (LinearSVM)
+    - Tree-based Models:
+        - Decision Tree (TREE)
+        - Random Forest (RF)
+        - Bagging Classifier (BAG)
+    - Boosting Models:
+        - AdaBoost (ADA)
+        - Gradient Boosting Machine (GBM)
+        - XGBoost (XGB)
+        - CatBoost (CAT)
+    - Distance and Probability-based Models:
+        - Gaussian Naive Bayes (NB)
+        - K-Nearest Neighbors (KNN)
+    - Neural Network Models:
+        - Multi-layer Perceptron (MLP)
 5. **Performance Metrics**: Accuracy scores for training, validation and complete datasets
 6. **Visualization**: Time series plots, correlation matrices, model performance comparisons
 
@@ -63,7 +74,7 @@ poetry run python -m src
 
 - **Dataset Class**: Handles downloading, processing, and splitting Bitcoin price data
 - **Technical Indicators**: Calculates various technical indicators used as features
-- **Bull/Bear Signal Generation**: Creates target variable based on moving average crossovers
+- **Bull/Bear Signal Generation**: Creates target variable based on 10-minute and 60-minute moving average crossovers
 - **Model Evaluation**: Trains and evaluates multiple classification models
 
 ## Results and Visualization

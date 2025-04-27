@@ -8,12 +8,12 @@ from ..visualization.plot_correlation_matrix import plot_correlation_matrix
 def generate_bull_bear_signals(df):
     """
     Target Variable
-    - We define our prediction variable `signal` using the `Close` price relative to the Bull Market Support Band (the
-      lower of 20-week SMA and 21-week EMA).
-    - If closing price falls below the Bull Market Support Band, it signals a bear market, otherwise a bull market.
+    - We define our prediction variable `signal` based on the relationship between Short-Term (10-minute) and
+      Long-Term (60-minute) Simple Moving Averages (SMA).
+    - When the 10-minute SMA exceeds the 60-minute SMA, it signals a bullish market; otherwise a bearish market.
     - The trading strategy assigns signal value = 1 (buy) in bull markets and signal value = 0 (sell) in bear markets.
-    - The window values for both moving averages are configurable parameters, both of which are arbitrary, and can
-      affect the results, ideally an optimisation study needs to be carried out to find optimum values.
+    - The window values for both moving averages (10 and 60) are arbitrarily chosen and can significantly
+      affect the results; ideally an optimization study should be carried out to find optimum values.
     :param df:
     :return:
     """

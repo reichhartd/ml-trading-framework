@@ -55,10 +55,10 @@ Initial exploratory analysis revealed:
 
 The target variable ("signal") is derived using a moving average crossover strategy:
 
-- When the Short-Term Moving Average (SMA_10) crosses above the Long-Term Moving Average (SMA_60), a buy signal (1) is generated
+- When the Short-Term Moving Average (10-minute SMA) crosses above the Long-Term Moving Average (60-minute SMA), a buy signal (1) is generated
 - When the Short-Term Moving Average falls below the Long-Term Moving Average, a sell signal (0) is generated
 
-This approach was chosen as it's a well-established technique in technical analysis for identifying trend reversals.
+This approach was chosen as it's a well-established technique in technical analysis for identifying trend reversals. Since we're using 1-minute interval data, these windows represent 10-minute and 60-minute time periods.
 
 ### Technical Indicators Selection
 
@@ -84,16 +84,36 @@ I evaluated multiple classification algorithms based on:
 
 ### Models Evaluated
 
-Eight different classification models were implemented and compared:
+Fourteen different classification models were implemented and compared, organized into categories:
+
+**Linear Models**:
 
 1. **Linear Discriminant Analysis (LDA)**
-2. **K-Nearest Neighbors (KNN)**
-3. **Decision Tree (TREE)**
-4. **Gaussian Naive Bayes (NB)**
-5. **Gradient Boosting Machine (GBM)**
-6. **XGBoost (XGB)**
-7. **CatBoost (CAT)**
-8. **Random Forest (RF)**
+2. **Logistic Regression (LOG)**
+3. **Stochastic Gradient Descent (SGD)** with log loss
+4. **Linear Support Vector Machines (LinearSVM)**
+
+**Tree-based Models**:
+
+5. **Decision Tree (TREE)**
+6. **Random Forest (RF)**
+7. **Bagging Classifier (BAG)** with Decision Trees as base estimators
+
+**Boosting Models**:
+
+8. **AdaBoost (ADA)**
+9. **Gradient Boosting Machine (GBM)**
+10. **XGBoost (XGB)**
+11. **CatBoost (CAT)**
+
+**Distance and Probability-based Models**:
+
+12. **Gaussian Naive Bayes (NB)**
+13. **K-Nearest Neighbors (KNN)**
+
+**Neural Network Models**:
+
+14. **Multi-layer Perceptron (MLP)** with hidden layers (100, 50)
 
 ### Evaluation Methodology
 
