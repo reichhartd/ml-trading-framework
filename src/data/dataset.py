@@ -15,21 +15,23 @@ class Dataset:
     __PROCESSED_FILE = path.join(__PROCESSED_FOLDER, "btcusd_1-min_data_processed.csv")
 
     # Splits
-    TRAIN_DATA_FILE = path.join(__PROCESSED_FOLDER, "train_data.csv")
-    TRAIN_DATA_BASELINE_FILE = path.join(__PROCESSED_FOLDER, "train_data_baseline.csv")
-    TRAIN_DATA_TECHNICAL_FILE = path.join(
+    __TRAIN_DATA_FILE = path.join(__PROCESSED_FOLDER, "train_data.csv")
+    __TRAIN_DATA_BASELINE_FILE = path.join(
+        __PROCESSED_FOLDER, "train_data_baseline.csv"
+    )
+    __TRAIN_DATA_TECHNICAL_FILE = path.join(
         __PROCESSED_FOLDER, "train_data_technical.csv"
     )
 
-    VALIDATION_DATA_FILE = path.join(__PROCESSED_FOLDER, "validation_data.csv")
-    VALIDATION_DATA_BASELINE_FILE = path.join(
+    __VALIDATION_DATA_FILE = path.join(__PROCESSED_FOLDER, "validation_data.csv")
+    __VALIDATION_DATA_BASELINE_FILE = path.join(
         __PROCESSED_FOLDER, "validation_data_baseline.csv"
     )
-    VALIDATION_DATA_TECHNICAL_FILE = path.join(
+    __VALIDATION_DATA_TECHNICAL_FILE = path.join(
         __PROCESSED_FOLDER, "validation_data_technical.csv"
     )
 
-    TEST_DATA_FILE = path.join(__PROCESSED_FOLDER, "test_data.csv")
+    __TEST_DATA_FILE = path.join(__PROCESSED_FOLDER, "test_data.csv")
 
     @staticmethod
     def __ensure_folders_exist():
