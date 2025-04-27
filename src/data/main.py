@@ -11,9 +11,7 @@ def prepare_dataset():
     logger.info("Starting dataset preparation")
 
     try:
-
         train_data, valid_data, test_data = Dataset.split_dataset()
-
         logger.info("Dataset preparation completed successfully")
         return train_data, valid_data, test_data
     except Exception as e:
