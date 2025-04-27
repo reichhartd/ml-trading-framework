@@ -5,8 +5,19 @@ from ..visualization import plot_time_series
 from ..visualization.plot_correlation_matrix import plot_correlation_matrix
 
 
-# Baseline Feature
 def generate_bull_bear_signals(df):
+    """
+    Target Variable
+    - We define our prediction variable `signal` using the `Close` price relative to the Bull Market Support Band (the
+      lower of 20-week SMA and 21-week EMA).
+    - If closing price falls below the Bull Market Support Band, it signals a bear market, otherwise a bull market.
+    - The trading strategy assigns signal value = 1 (buy) in bull markets and signal value = 0 (sell) in bear markets.
+    - The window values for both moving averages are configurable parameters, both of which are arbitrary, and can
+      affect the results, ideally an optimisation study needs to be carried out to find optimum values.
+    :param df:
+    :return:
+    """
+
     # The arbitrarily chosen window values of 10 and 60 for SMA_10 and SMA_60 respectively impact performance
     # significantly and should ideally be optimized through dedicated analysis.
     df["SMA_10"] = df["Close"].rolling(window=10, min_periods=1, center=False).mean()

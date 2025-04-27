@@ -5,6 +5,21 @@ from ..config import TRAIN_DATA_FILE, VALIDATION_DATA_FILE, TEST_DATA_FILE
 
 
 def split_dataset(df=None):
+    """
+    Data Splitting Strategy
+    For our time series, we'll split the dataset into three distinct segments:
+    1. **Training Set (60%)**: The earliest portion of our chronological data used to train the model and establish
+       patterns.
+    2. **Validation Set (20%)**: The middle segment used to tune hyperparameters and prevent overfitting during the
+       development phase.
+    3. **Test Set (20%)**: The most recent data, kept completely separate until final evaluation to simulate real-world
+       performance.
+    This chronological splitting approach is crucial for financial time series data to prevent data leakage and maintain
+    the temporal nature of the information.
+    :param df:
+    :return:
+    """
+
     # Check if split files already exist
     if (
         os.path.exists(TRAIN_DATA_FILE)
