@@ -37,7 +37,8 @@ class Dataset:
     @staticmethod
     def __read_csv(filepath, set_index=True):
         df = pd.read_csv(filepath, low_memory=False)
-        if set_index:
+        if set_index and "Timestamp" in df.columns:
+            df["Timestamp"] = pd.to_datetime(df["Timestamp"], unit="s")
             df.set_index("Timestamp", inplace=True)
         return df
 
@@ -77,23 +78,11 @@ class Dataset:
         # Ensure folders exist
         Dataset.__ensure_folders_exist()
 
-        # Function to convert Unix timestamp to formatted datetime string
-        def convert_timestamp(ts):
-            dt = datetime.fromtimestamp(float(ts), tz=UTC)
-            timezone_str = dt.strftime("%z")
-            formatted_timezone = f"{timezone_str[:3]}:{timezone_str[3:]}"
-            return dt.strftime("%Y-%m-%d %H:%M:%S") + formatted_timezone
-
         # Copy the original file to processed directory
         copy2(Dataset.__RAW_FILE, Dataset.__PROCESSED_FILE)
 
-        # Convert Timestamp column to datetime format
-        df = Dataset.__read_csv(Dataset.__PROCESSED_FILE, False)
-        df["datetime"] = df["Timestamp"].apply(convert_timestamp)
-        df.set_index("Timestamp", inplace=True)
-
-        # Save the processed data
-        df.to_csv(Dataset.__PROCESSED_FILE, index=False)
+        # Load with datetime conversion
+        df = Dataset.__read_csv(Dataset.__PROCESSED_FILE)
 
         return df
 
@@ -156,12 +145,14 @@ class Dataset:
 
         # Check time ranges
         logger.info(
-            f"Training set: {train_data.index.min()} to {train_data.index.max()}"
+            f"Training set: {train_data.index.min().strftime('%Y-%m-%d %H:%M')} to {train_data.index.max().strftime('%Y-%m-%d %H:%M')}"
         )
         logger.info(
-            f"Validation set: {valid_data.index.min()} to {valid_data.index.max()}"
+            f"Validation set: {valid_data.index.min().strftime('%Y-%m-%d %H:%M')} to {valid_data.index.max().strftime('%Y-%m-%d %H:%M')}"
         )
-        logger.info(f"Test set: {test_data.index.min()} to {test_data.index.max()}")
+        logger.info(
+            f"Test set: {test_data.index.min().strftime('%Y-%m-%d %H:%M')} to {test_data.index.max().strftime('%Y-%m-%d %H:%M')}"
+        )
 
         # Saving the split data records
         train_data.to_csv(Dataset.__TRAIN_DATA_FILE)
