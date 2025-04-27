@@ -32,3 +32,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
 black = { extras = ["jupyter"], version = "^25.1.0" }
+
+[tool.black]
+line-length = 120

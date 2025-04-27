@@ -20,17 +20,22 @@ def generate_bull_bear_signals(df):
 
     # The arbitrarily chosen window values of 10 and 60 for SMA_10 and SMA_60 respectively impact performance
     # significantly and should ideally be optimized through dedicated analysis.
-    df["SMA_10"] = df["Close"].rolling(window=10, min_periods=1, center=False).mean()
-    df["SMA_60"] = df["Close"].rolling(window=60, min_periods=1, center=False).mean()
+    sma_10 = df["Close"].rolling(window=10, min_periods=1, center=False).mean()
+    sma_60 = df["Close"].rolling(window=60, min_periods=1, center=False).mean()
 
     # When the Short Term Moving Average (SMA_10) exceeds the Long Term Moving Average (SMA_60),
     # the strategy generates a buy signal (1); otherwise it produces a sell signal (0).
-    df["signal"] = np.where(df["SMA_10"] > df["SMA_60"], 1.0, 0.0)
+    df["signal"] = np.where(sma_10 > sma_60, 1.0, 0.0)
 
     if PLOT_DATA:
         plot_time_series(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)", 2)
+
+        temp_df = df.copy()
+        temp_df["SMA_10"] = sma_10
+        temp_df["SMA_60"] = sma_60
+
         plot_time_series(
-            df.tail(PLOT_DATA_POINTS).copy(),
+            temp_df.tail(PLOT_DATA_POINTS).copy(),
             ["SMA_10", "SMA_60", "signal"],
             title="SMA_10, SMA_60, Signal (Bull-Bear-Signal)",
             secondary_y=[False, False, True],

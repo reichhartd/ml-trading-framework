@@ -5,9 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-def plot_train_validation_data(
-    train_data, valid_data, target_feature="signal", dataset_type=""
-):
+def plot_train_validation_data(train_data, valid_data, target_feature="signal", dataset_type=""):
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
@@ -48,7 +46,7 @@ def plot_model_evaluation_results(results_df, dataset_type=""):
         lw=2,
         annot=True,
         fmt=".3f",
-        cmap="viridis",
+        cmap="RdYlGn",
     )
     plt.title(f"{dataset_type} Features - Model Performance Metrics")
     plt.tight_layout()

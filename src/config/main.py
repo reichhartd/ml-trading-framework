@@ -5,12 +5,8 @@ from os import path
 PROCESSED_FOLDER = "data/processed/"
 TRAIN_DATA_BASELINE_FILE = path.join(PROCESSED_FOLDER, "train_data_baseline.csv")
 TRAIN_DATA_TECHNICAL_FILE = path.join(PROCESSED_FOLDER, "train_data_technical.csv")
-VALIDATION_DATA_BASELINE_FILE = path.join(
-    PROCESSED_FOLDER, "validation_data_baseline.csv"
-)
-VALIDATION_DATA_TECHNICAL_FILE = path.join(
-    PROCESSED_FOLDER, "validation_data_technical.csv"
-)
+VALIDATION_DATA_BASELINE_FILE = path.join(PROCESSED_FOLDER, "validation_data_baseline.csv")
+VALIDATION_DATA_TECHNICAL_FILE = path.join(PROCESSED_FOLDER, "validation_data_technical.csv")
 
 
 # Visualization

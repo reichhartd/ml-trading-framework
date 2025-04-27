@@ -4,25 +4,61 @@ from sklearn.ensemble import (
     GradientBoostingClassifier,
     RandomForestClassifier,
     AdaBoostClassifier,
+    BaggingClassifier,
 )
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
-from sklearn.svm import SVC
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, SGDClassifier
+from sklearn.neural_network import MLPClassifier
+from sklearn.svm import LinearSVC
 
+
+RANDOM_STATE = 42
 
 selected_models = [
+    # Linear Models
     ("LDA", LinearDiscriminantAnalysis()),
-    ("LOG", LogisticRegression(max_iter=1000, random_state=42)),
+    ("LOG", LogisticRegression(max_iter=5000, random_state=RANDOM_STATE)),
+    ("SGD", SGDClassifier(loss="log_loss", max_iter=1000, random_state=RANDOM_STATE)),
+    ("LinearSVM", LinearSVC(dual="auto", random_state=RANDOM_STATE, max_iter=2000)),
+    # Tree-based Models
+    ("TREE", DecisionTreeClassifier(max_depth=6, random_state=RANDOM_STATE)),
+    ("RF", RandomForestClassifier(n_estimators=100, max_depth=10, random_state=RANDOM_STATE)),
+    (
+        "BAG",
+        BaggingClassifier(
+            estimator=DecisionTreeClassifier(max_depth=6, random_state=RANDOM_STATE),
+            n_estimators=50,
+            random_state=RANDOM_STATE,
+        ),
+    ),
+    # Boosting Models
+    ("ADA", AdaBoostClassifier(n_estimators=50, random_state=RANDOM_STATE)),
+    (
+        "GBM",
+        GradientBoostingClassifier(n_estimators=100, max_depth=5, random_state=RANDOM_STATE),
+    ),
+    (
+        "XGB",
+        XGBClassifier(
+            n_estimators=100,
+            max_depth=6,
+            eval_metric="logloss",
+            random_state=RANDOM_STATE,
+        ),
+    ),
+    (
+        "CAT",
+        CatBoostClassifier(silent=True, n_estimators=100, depth=6, random_state=RANDOM_STATE),
+    ),
+    # Distance-based and Probability Models
     ("NB", GaussianNB()),
-    ("KNN", KNeighborsClassifier(n_neighbors=5)),
-    ("SVM", SVC(probability=True, random_state=42)),
-    ("TREE", DecisionTreeClassifier(random_state=42)),
-    ("RF", RandomForestClassifier(n_estimators=25, random_state=42)),
-    ("ADA", AdaBoostClassifier(random_state=42)),
-    ("GBM", GradientBoostingClassifier(n_estimators=25, random_state=42)),
-    ("XGB", XGBClassifier(n_estimators=25, eval_metric="logloss", random_state=42)),
-    ("CAT", CatBoostClassifier(silent=True, n_estimators=25, random_state=42)),
+    ("KNN", KNeighborsClassifier(n_neighbors=15, weights="distance")),
+    # Neural Network Models
+    (
+        "MLP",
+        MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000, random_state=RANDOM_STATE),
+    ),
 ]
