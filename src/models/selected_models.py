@@ -12,6 +12,7 @@ from sklearn.tree import DecisionTreeClassifier
 from xgboost import XGBClassifier
 from sklearn.linear_model import LogisticRegression, SGDClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.svm import LinearSVC
 
 
 RANDOM_STATE = 42
@@ -21,6 +22,7 @@ selected_models = [
     ("LDA", LinearDiscriminantAnalysis()),
     ("LOG", LogisticRegression(max_iter=1000, random_state=RANDOM_STATE)),
     ("SGD", SGDClassifier(loss="log_loss", max_iter=1000, random_state=RANDOM_STATE)),
+    ("LinearSVM", LinearSVC(dual="auto", random_state=RANDOM_STATE, max_iter=2000)),
     # Tree-based Models
     ("TREE", DecisionTreeClassifier(max_depth=6, random_state=RANDOM_STATE)),
     ("RF", RandomForestClassifier(n_estimators=100, max_depth=10, random_state=RANDOM_STATE)),
