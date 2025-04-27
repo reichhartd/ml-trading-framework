@@ -28,10 +28,7 @@ selected_models = [
     ),
     # Tree-based Models
     ("TREE", DecisionTreeClassifier(max_depth=6, random_state=RANDOM_STATE)),
-    (
-        "RF",
-        RandomForestClassifier(n_estimators=100, max_depth=10, random_state=RANDOM_STATE),
-    ),
+    ("RF", RandomForestClassifier(n_estimators=100, max_depth=10, random_state=RANDOM_STATE)),
     (
         "BAG",
         BaggingClassifier(
