@@ -25,21 +25,7 @@ class Dataset:
 
     # Splits
     __TRAIN_DATA_FILE = path.join(__PROCESSED_FOLDER, "train_data.csv")
-    __TRAIN_DATA_BASELINE_FILE = path.join(
-        __PROCESSED_FOLDER, "train_data_baseline.csv"
-    )
-    __TRAIN_DATA_TECHNICAL_FILE = path.join(
-        __PROCESSED_FOLDER, "train_data_technical.csv"
-    )
-
     __VALIDATION_DATA_FILE = path.join(__PROCESSED_FOLDER, "validation_data.csv")
-    __VALIDATION_DATA_BASELINE_FILE = path.join(
-        __PROCESSED_FOLDER, "validation_data_baseline.csv"
-    )
-    __VALIDATION_DATA_TECHNICAL_FILE = path.join(
-        __PROCESSED_FOLDER, "validation_data_technical.csv"
-    )
-
     __TEST_DATA_FILE = path.join(__PROCESSED_FOLDER, "test_data.csv")
 
     @staticmethod
