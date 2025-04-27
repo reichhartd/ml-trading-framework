@@ -12,10 +12,10 @@ def evaluate_models(train_data, valid_data, target_feature="signal", dataset_typ
     valid_data = valid_data.dropna()
 
     y_train = train_data[target_feature]
-    x_train = train_data.loc[:, train_data.columns != target_feature]
+    X_train = train_data.loc[:, train_data.columns != target_feature]
 
     y_valid = valid_data[target_feature]
-    x_valid = valid_data.loc[:, valid_data.columns != target_feature]
+    X_valid = valid_data.loc[:, valid_data.columns != target_feature]
 
     logger.info(f"Dataset type: {dataset_type}")
     logger.info(f"Features used: {x_train.columns}")
