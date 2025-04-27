@@ -31,7 +31,7 @@ This framework is designed to predict trading signals (bull/bear market indicato
 1. **Problem Formulation**: Binary classification predicting bull/bear market signals for Bitcoin trading using technical indicators
 2. **Dataset Preparation**: Chronological time series splitting (60/20/20 for train/validation/test)
 3. **Feature Engineering**: Technical indicators (SMA, EMA, RSI, ROC, Momentum, Stochastic Oscillator)
-4. **Model Selection**: Comparison of 15 classification models
+4. **Model Selection**: Comparison of 14 classification models
     - Linear Models:
         - Linear Discriminant Analysis (LDA)
         - Logistic Regression (LOG)

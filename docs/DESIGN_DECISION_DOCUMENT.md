@@ -84,7 +84,7 @@ I evaluated multiple classification algorithms based on:
 
 ### Models Evaluated
 
-Fifteen different classification models were implemented and compared, organized into categories:
+Fourteen different classification models were implemented and compared, organized into categories:
 
 **Linear Models**:
 
@@ -93,13 +93,27 @@ Fifteen different classification models were implemented and compared, organized
 3. **Stochastic Gradient Descent (SGD)** with log loss
 4. **Linear Support Vector Machines (LinearSVM)**
 
-**Tree-based Models**: 5. **Decision Tree (TREE)** 6. **Random Forest (RF)** 7. **Bagging Classifier (BAG)** with Decision Trees as base estimators
+**Tree-based Models**:
 
-**Boosting Models**: 8. **AdaBoost (ADA)** 9. **Gradient Boosting Machine (GBM)** 10. **XGBoost (XGB)** 11. **CatBoost (CAT)**
+5. **Decision Tree (TREE)**
+6. **Random Forest (RF)**
+7. **Bagging Classifier (BAG)** with Decision Trees as base estimators
 
-**Distance and Probability-based Models**: 12. **Gaussian Naive Bayes (NB)** 13. **K-Nearest Neighbors (KNN)**
+**Boosting Models**:
 
-**Neural Network Models**: 14. **Multi-layer Perceptron (MLP)** with hidden layers (100, 50)
+8. **AdaBoost (ADA)**
+9. **Gradient Boosting Machine (GBM)**
+10. **XGBoost (XGB)**
+11. **CatBoost (CAT)**
+
+**Distance and Probability-based Models**:
+
+12. **Gaussian Naive Bayes (NB)**
+13. **K-Nearest Neighbors (KNN)**
+
+**Neural Network Models**:
+
+14. **Multi-layer Perceptron (MLP)** with hidden layers (100, 50)
 
 ### Evaluation Methodology
 
