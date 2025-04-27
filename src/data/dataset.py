@@ -50,6 +50,9 @@ class Dataset:
         """
         logger.info("Downloading dataset")
 
+        # Ensure folders exist
+        Dataset.__ensure_folders_exist()
+
         api = KaggleApi()
         api.authenticate()
         api.dataset_download_files(
