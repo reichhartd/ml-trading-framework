@@ -5,6 +5,7 @@ import seaborn as sns
 def plot_correlation_matrix(
     df,
     target="",
+    dataset_type="",
 ):
     if target not in df.columns:
         raise ValueError(f"Target variable '{target}' not found in dataframe columns")
@@ -23,6 +24,6 @@ def plot_correlation_matrix(
         annot=True,
         cbar=False,
     )
-    plt.title(f"Feature Correlation to {target}")
+    plt.title(f"{dataset_type} Features - Correlation to {target}")
     plt.tight_layout()
     plt.show()
