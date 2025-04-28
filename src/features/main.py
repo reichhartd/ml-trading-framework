@@ -9,6 +9,7 @@ from ..config import (
     VALIDATION_DATA_BASELINE_FILE,
     TRAIN_DATA_TECHNICAL_FILE,
     VALIDATION_DATA_TECHNICAL_FILE,
+    DATA_LIMIT,
 )
 
 
@@ -56,9 +57,14 @@ def prepare_features(train_data, valid_data):
 
         logger.info("Feature files don't exist, generating features")
 
-        # Limit to the last 100,000 entries (most recent)
-        train_data = train_data.tail(100000).copy()
-        valid_data = valid_data.tail(100000).copy()
+        if DATA_LIMIT is not None:
+            logger.info(f"Limiting datasets to the last {DATA_LIMIT} entries")
+            train_data = train_data.tail(DATA_LIMIT).copy()
+            valid_data = valid_data.tail(DATA_LIMIT).copy()
+        else:
+            logger.info("Using full dataset without limit")
+            train_data = train_data.copy()
+            valid_data = valid_data.copy()
 
         train_data_baseline = generate_bull_bear_signals(train_data.copy())
         valid_data_baseline = generate_bull_bear_signals(valid_data.copy())
