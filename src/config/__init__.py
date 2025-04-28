@@ -16,6 +16,7 @@ from .main import (
     PLOT_DATA,
     PLOT_DATA_POINTS,
     PROCESSED_FOLDER,
+    DATA_LIMIT,
 )
 
 # Export public API
@@ -27,4 +28,5 @@ __all__ = [
     "PLOT_DATA",
     "PLOT_DATA_POINTS",
     "PROCESSED_FOLDER",
+    "DATA_LIMIT",
 ]

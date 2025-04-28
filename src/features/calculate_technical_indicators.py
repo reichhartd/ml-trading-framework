@@ -65,11 +65,9 @@ def calculate_technical_indicators(df):
         df_copy = df.tail(PLOT_DATA_POINTS).copy()
         for title, indicators in indicator_groups.items():
             plot_time_series(
-                df_copy[indicators],
-                indicators,
-                title=f"{title} (periods=10,30,200)",
+                df_copy[indicators], indicators, title=f"{title} (periods=10,30,200)", dataset_type="Technical"
             )
-        plot_correlation_matrix(df, "signal")
-        plot_missing_data(df)
+        plot_correlation_matrix(df, "signal", dataset_type="Technical")
+        plot_missing_data(df, dataset_type="Technical")
 
     return df
