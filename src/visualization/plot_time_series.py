@@ -2,7 +2,7 @@ from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
 
-def plot_time_series(df, columns, title="", subplot_rows=1, secondary_y=None):
+def plot_time_series(df, columns, title="", subplot_rows=1, secondary_y=None, dataset_type=""):
     line_widths = [2] * len(columns)
 
     if secondary_y is not None:
@@ -41,7 +41,7 @@ def plot_time_series(df, columns, title="", subplot_rows=1, secondary_y=None):
             )
     fig.update_layout(
         template="plotly_white",
-        title=title,
+        title=f"{dataset_type} Features - {title}",
         margin=dict(l=50, r=80, t=50, b=40),
         autosize=True,
     )
