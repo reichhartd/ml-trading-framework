@@ -37,8 +37,11 @@ def plot_train_validation_data(train_data, valid_data, target_feature="signal", 
 def plot_model_evaluation_results(results_df, dataset_type=""):
     sns.set(style="whitegrid")
     plt.figure()
+    performance_cols = [col for col in results_df.columns if col != "Completion Time (s)"]
+    time_df = results_df[["Completion Time (s)"]]
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5), gridspec_kw={"width_ratios": [len(performance_cols), 1]})
     sns.heatmap(
-        results_df,
+        results_df[performance_cols],
         vmin=0.5,
         vmax=1.0,
         center=0.75,
@@ -47,8 +50,10 @@ def plot_model_evaluation_results(results_df, dataset_type=""):
         annot=True,
         fmt=".3f",
         cmap="RdYlGn",
+        ax=ax1,
     )
-    plt.title(f"{dataset_type} Features - Model Performance Metrics")
+    sns.heatmap(time_df, square=False, lw=2, annot=True, fmt=".2f", cmap="Blues", ax=ax2)
+    plt.suptitle(f"{dataset_type} Features - Model Performance Metrics")
     plt.tight_layout()
     plt.show()
 
