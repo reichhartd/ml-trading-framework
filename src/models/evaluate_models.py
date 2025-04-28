@@ -50,6 +50,7 @@ def evaluate_models(train_data, valid_data, target_feature="signal", dataset_typ
         {
             "Training": train_results,
             "Validation": valid_results,
+            "Completion Time (s)": train_times,
         },
         index=model_names,
     )
