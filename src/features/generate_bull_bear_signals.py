@@ -28,7 +28,7 @@ def generate_bull_bear_signals(df):
     df["signal"] = np.where(sma_10 > sma_60, 1.0, 0.0)
 
     if PLOT_DATA:
-        plot_time_series(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)", 2)
+        plot_time_series(df, ["Close", "signal"], "Signal (Bull-Bear-Signal)", 2, dataset_type="Baseline")
 
         temp_df = df.copy()
         temp_df["SMA_10"] = sma_10
@@ -39,7 +39,8 @@ def generate_bull_bear_signals(df):
             ["SMA_10", "SMA_60", "signal"],
             title="SMA_10, SMA_60, Signal (Bull-Bear-Signal)",
             secondary_y=[False, False, True],
+            dataset_type="Baseline",
         )
-        plot_correlation_matrix(df, "signal")
+        plot_correlation_matrix(df, "signal", dataset_type="Baseline")
 
     return df
