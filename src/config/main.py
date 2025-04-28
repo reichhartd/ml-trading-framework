@@ -1,6 +1,5 @@
 from os import path
 
-
 # Processed
 PROCESSED_FOLDER = "data/processed/"
 TRAIN_DATA_BASELINE_FILE = path.join(PROCESSED_FOLDER, "train_data_baseline.csv")
@@ -8,6 +7,10 @@ TRAIN_DATA_TECHNICAL_FILE = path.join(PROCESSED_FOLDER, "train_data_technical.cs
 VALIDATION_DATA_BASELINE_FILE = path.join(PROCESSED_FOLDER, "validation_data_baseline.csv")
 VALIDATION_DATA_TECHNICAL_FILE = path.join(PROCESSED_FOLDER, "validation_data_technical.csv")
 
+# Dataset Size
+DATA_LIMIT = 100000
+# To use the full dataset, uncomment this line:
+# DATA_LIMIT = None
 
 # Visualization
 PLOT_DATA = True
