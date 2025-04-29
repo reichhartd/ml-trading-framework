@@ -12,14 +12,10 @@ def generate_bull_bear_signals(df):
       Long-Term (60-minute) Simple Moving Averages (SMA).
     - When the 10-minute SMA exceeds the 60-minute SMA, it signals a bullish market; otherwise a bearish market.
     - The trading strategy assigns signal value = 1 (buy) in bull markets and signal value = 0 (sell) in bear markets.
-    - The window values for both moving averages (10 and 60) are arbitrarily chosen and can significantly
-      affect the results; ideally an optimization study should be carried out to find optimum values.
+    - The window values for both moving averages (10 and 60) are arbitrarily chosen and can affect the results.
     :param df:
     :return:
     """
-
-    # The arbitrarily chosen window values of 10 and 60 for SMA_10 and SMA_60 respectively impact performance
-    # significantly and should ideally be optimized through dedicated analysis.
     sma_10 = df["Close"].rolling(window=10, min_periods=1, center=False).mean()
     sma_60 = df["Close"].rolling(window=60, min_periods=1, center=False).mean()
 
