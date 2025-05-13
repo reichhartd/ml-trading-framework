@@ -40,10 +40,10 @@ husky@^9.1.7:
   resolved "https://registry.yarnpkg.com/husky/-/husky-9.1.7.tgz#d46a38035d101b46a70456a850ff4201344c0b2d"
   integrity sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==
 
-prettier-plugin-toml@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/prettier-plugin-toml/-/prettier-plugin-toml-2.0.4.tgz#fb7fdc3b26e6186a9d62f75b27d08e41e8d8b89b"
-  integrity sha512-uOTNPClqnE3T9XJ8hCqAJek70Jnk3/ZuAG/aXRTmrWbVe8lJyuZ60KV7OtgWqF+iGZOPVpkh+giHhX9GZYRHGA==
+prettier-plugin-toml@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-toml/-/prettier-plugin-toml-2.0.5.tgz#03e95e4117bb5195067907a0e219467afd8e34da"
+  integrity sha512-WjXXKQyY4TdXWHU1v73UJxK/oDLSppf+b9KrSVl2kC4ZOr9CIVPKTQ/JxttgbYMaH8r3ihw7WYhMpI1EFa1obg==
   dependencies:
     "@taplo/lib" "^0.5.0"
 
